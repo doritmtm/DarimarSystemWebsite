@@ -13,7 +13,7 @@ $msdeployArguments =
     "-allowUntrusted",
     "-source:contentPath=${offlinePath}\app_offline.htm",
     ("-dest:" + 
-        "contentPath=${hostSiteName}," +
+        "contentPath=${hostSiteName}\app_offline.htm," +
         "computerName=${computerNameArgument}," + 
         "username=${username}," +
         "password=${password}," +
