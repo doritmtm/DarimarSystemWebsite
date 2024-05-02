@@ -25,8 +25,8 @@ jobs:
     - name: Deploy
       shell: pwsh
       run: >
-        ${{ github.workspace }}/DarimarSystemWebsite/Scripts/RunMsDeploy.ps1
-        ${{ github.workspace }}/DarimarSystemWebsite/publish
+        ${{ github.workspace }}\DarimarSystemWebsite\Scripts\RunMsDeploy.ps1
+        ${{ github.workspace }}\DarimarSystemWebsite\publish
         ${{ secrets.DARIMAR_WEBSITE_NAME }}
         ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
         ${{ secrets.DARIMAR_SERVER_USERNAME }}
