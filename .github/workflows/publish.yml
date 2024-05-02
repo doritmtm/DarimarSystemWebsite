@@ -21,12 +21,12 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish DarimarSystemWebsite/DarimarSystemWebsite.csproj --configuration Release --framework net8.0 --output ./publish --runtime win-x64 --self-contained true -p:PublishTrimmed=false -p:PublishSingleFile=false
+      run: dotnet publish DarimarSystemWebsite\DarimarSystemWebsite.csproj --configuration Release --framework net8.0 --runtime win-x64 --self-contained true -p:PublishTrimmed=false -p:PublishSingleFile=false
     - name: Deploy
       shell: pwsh
       run: >
         ${{ github.workspace }}\DarimarSystemWebsite\Scripts\RunMsDeploy.ps1
-        ${{ github.workspace }}\DarimarSystemWebsite\publish
+        ${{ github.workspace }}\DarimarSystemWebsite\bin\Release\net8.0\win-x64
         ${{ secrets.DARIMAR_WEBSITE_NAME }}
         ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
         ${{ secrets.DARIMAR_SERVER_USERNAME }}
