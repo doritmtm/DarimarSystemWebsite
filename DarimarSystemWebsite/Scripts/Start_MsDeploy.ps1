@@ -1,6 +1,6 @@
 $msdeploy = "C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe";
 
-$recycleApp = $args[0]
+$offlinePath = $args[0]
 $hostSiteName = $args[1]
 $computerName = $args[2]
 $username = $args[3]
@@ -11,14 +11,18 @@ $computerNameArgument = $computerName + '/MsDeploy.axd?site=' + $hostSiteName
 $msdeployArguments = 
     "-verb:sync",
     "-allowUntrusted",
-    "-source:recycleApp",
+    "-source:contentPath=${offlinePath}\app_offline.htm",
     ("-dest:" + 
-        "recycleApp=${recycleApp}," +
-        "recycleMode=StartAppPool," +
+        "contentPath=${hostSiteName}," +
         "computerName=${computerNameArgument}," + 
         "username=${username}," +
         "password=${password}," +
-        "AuthType='Basic'"
-    )
+        "authtype='Basic'," +
+        "includeAcls='False'"
+    ),
+    "-disableLink:AppPoolExtension",
+    "-disableLink:ContentExtension",
+    "-disableLink:CertificateExtension",
+    "-verbose"
 
 & $msdeploy $msdeployArguments
