@@ -22,11 +22,31 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish
       run: dotnet publish DarimarSystemWebsite\DarimarSystemWebsite.csproj --configuration Release --framework net8.0 --runtime win-x64 --self-contained true -p:PublishTrimmed=false -p:PublishSingleFile=false
+    - name: Stop site
+      shell: pwsh
+      run: >
+        ${{ github.workspace }}\DarimarSystemWebsite\Scripts\Stop_MsDeploy.ps1
+        ${{ github.workspace }}\DarimarSystemWebsite\Offline
+        ${{ secrets.DARIMAR_HOST_SITE_NAME }}
+        ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
+        ${{ secrets.DARIMAR_SERVER_USERNAME }}
+        ${{ secrets.DARIMAR_SERVER_PASSWORD }}
+    - name: Waiting 10 seconds
+      shell: pwsh
+      run: Start-Sleep -Seconds 10
     - name: Deploy
       shell: pwsh
       run: >
         ${{ github.workspace }}\DarimarSystemWebsite\Scripts\Publish_MsDeploy.ps1
         ${{ github.workspace }}\DarimarSystemWebsite\bin\Release\net8.0\win-x64\publish
+        ${{ secrets.DARIMAR_HOST_SITE_NAME }}
+        ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
+        ${{ secrets.DARIMAR_SERVER_USERNAME }}
+        ${{ secrets.DARIMAR_SERVER_PASSWORD }}
+    - name: Start site
+      shell: pwsh
+      run: >
+        ${{ github.workspace }}\DarimarSystemWebsite\Scripts\Start_MsDeploy.ps1
         ${{ secrets.DARIMAR_HOST_SITE_NAME }}
         ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
         ${{ secrets.DARIMAR_SERVER_USERNAME }}
