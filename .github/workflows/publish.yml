@@ -1,0 +1,33 @@
+name: Publish to darimarsystem.com
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  publish-darimar:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Publish
+      run: dotnet publish DarimarSystemWebsite/DarimarSystemWebsite.csproj --configuration Release --framework net8.0 --output ./publish --runtime win-x64 --self-contained true -p:PublishTrimmed=false -p:PublishSingleFile=false
+    - name: Deploy
+      uses: rasmusbuchholdt/simply-web-deploy@2.1.0
+      with:
+        website-name: ${{ secrets.DARIMAR_WEBSITE_NAME }}
+        server-computer-name: ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
+        server-username: ${{ secrets.DARIMAR_SERVER_USERNAME }}
+        server-password: ${{ secrets.DARIMAR_SERVER_PASSWORD }}
+        source-path: '\publish\'
+        target-path: '/darimarsystem/'
