@@ -26,7 +26,7 @@ jobs:
       shell: pwsh
       run: >
         ${{ github.workspace }}\DarimarSystemWebsite\Scripts\Stop_MsDeploy.ps1
-        ${{ secrets.DARIMAR_APP_POOL_NAME }}
+        ${{ secrets.DARIMAR_HOST_SITE_NAME }}
         ${{ secrets.DARIMAR_HOST_SITE_NAME }}
         ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
         ${{ secrets.DARIMAR_SERVER_USERNAME }}
@@ -44,7 +44,7 @@ jobs:
       shell: pwsh
       run: >
         ${{ github.workspace }}\DarimarSystemWebsite\Scripts\Start_RunMsDeploy.ps1
-        ${{ secrets.DARIMAR_APP_POOL_NAME }}
+        ${{ secrets.DARIMAR_HOST_SITE_NAME }}
         ${{ secrets.DARIMAR_HOST_SITE_NAME }}
         ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
         ${{ secrets.DARIMAR_SERVER_USERNAME }}
