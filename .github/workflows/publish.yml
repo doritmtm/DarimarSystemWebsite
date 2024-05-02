@@ -27,6 +27,7 @@ jobs:
       run: >
         ${{ github.workspace }}\DarimarSystemWebsite\Scripts\Stop_MsDeploy.ps1
         ${{ github.workspace }}\DarimarSystemWebsite\Offline
+        ${{ github.workspace }}\DarimarSystemWebsite\bin\Release\net8.0\win-x64\publish
         ${{ secrets.DARIMAR_HOST_SITE_NAME }}
         ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
         ${{ secrets.DARIMAR_SERVER_USERNAME }}
