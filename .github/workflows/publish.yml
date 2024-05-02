@@ -23,11 +23,10 @@ jobs:
     - name: Publish
       run: dotnet publish DarimarSystemWebsite/DarimarSystemWebsite.csproj --configuration Release --framework net8.0 --output ./publish --runtime win-x64 --self-contained true -p:PublishTrimmed=false -p:PublishSingleFile=false
     - name: Deploy
-      uses: rasmusbuchholdt/simply-web-deploy@2.1.0
-      with:
-        website-name: ${{ secrets.DARIMAR_WEBSITE_NAME }}
-        server-computer-name: ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
-        server-username: ${{ secrets.DARIMAR_SERVER_USERNAME }}
-        server-password: ${{ secrets.DARIMAR_SERVER_PASSWORD }}
-        source-path: '\publish\'
-        target-path: '/darimarsystem/'
+      shell: pwsh
+      run: >
+        ${{ github.action_path }}/Scripts/RunMsDeploy.ps1
+        ${{ secrets.DARIMAR_WEBSITE_NAME }}
+        ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
+        ${{ secrets.DARIMAR_SERVER_USERNAME }}
+        ${{ secrets.DARIMAR_SERVER_PASSWORD }}
