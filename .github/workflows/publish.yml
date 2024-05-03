@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-    - uses: actions/checkout@v4
+      uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -24,7 +24,7 @@ jobs:
     - name: Publish
       run: dotnet publish DarimarSystemWebsite\DarimarSystemWebsite.csproj --configuration Release --framework net8.0 --runtime win-x64 --self-contained true -p:PublishTrimmed=false -p:PublishSingleFile=false
     - name: Deploy
-    - uses: ./.github/actions/publish-darimar
+      uses: ./.github/actions/publish-darimar
       with:
         scripts-path: ${{ github.workspace }}\DarimarSystemWebsite\Scripts
         offline-path: ${{ github.workspace }}\DarimarSystemWebsite\Offline
