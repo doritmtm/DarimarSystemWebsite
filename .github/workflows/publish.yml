@@ -9,6 +9,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Checkout repository
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -22,8 +23,13 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish
       run: dotnet publish DarimarSystemWebsite\DarimarSystemWebsite.csproj --configuration Release --framework net8.0 --runtime win-x64 --self-contained true -p:PublishTrimmed=false -p:PublishSingleFile=false
+    - name: Deploy
     - uses: ./.github/actions/publish-darimar
       with:
         scripts-path: ${{ github.workspace }}\DarimarSystemWebsite\Scripts
         offline-path: ${{ github.workspace }}\DarimarSystemWebsite\Offline
         publish-path: ${{ github.workspace }}\DarimarSystemWebsite\bin\Release\net8.0\win-x64\publish
+        host-site-name: ${{ secrets.DARIMAR_HOST_SITE_NAME }}
+        server-computer-name: ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
+        server-username: ${{ secrets.DARIMAR_SERVER_USERNAME }}
+        server-password: ${{ secrets.DARIMAR_SERVER_PASSWORD }}
