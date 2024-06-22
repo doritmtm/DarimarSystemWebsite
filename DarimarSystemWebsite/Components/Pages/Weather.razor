@@ -26,7 +26,7 @@ else
             @foreach (var forecast in forecasts)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@{RenderTheText(__builder, forecast.Date.ToShortDateString());}</td>
                     <td>@forecast.TemperatureC</td>
                     <td>@forecast.TemperatureF</td>
                     <td>@forecast.Summary</td>
@@ -38,6 +38,11 @@ else
 
 @code {
     private WeatherForecast[]? forecasts;
+
+    private void RenderTheText(RenderTreeBuilder __builder, string text)
+    {
+        <p>Text: <strong>@text</strong></p>
+    }
 
     protected override async Task OnInitializedAsync()
     {
