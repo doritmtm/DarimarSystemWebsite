@@ -24,14 +24,14 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish DarimarSystemWebsite\DarimarSystemWebsite.csproj --configuration Release --framework net8.0 --runtime win-x64 --self-contained true -p:PublishTrimmed=false -p:PublishSingleFile=false
+      run: dotnet publish DarimarSystemWebsite\DarimarSystemWebsite\DarimarSystemWebsite.csproj --configuration Release --framework net8.0 --runtime win-x64 --self-contained true -p:PublishTrimmed=false -p:PublishSingleFile=false
     - name: Deploy main
       if: ${{ github.ref_name == 'main' }}
       uses: ./.github/actions/publish-darimar
       with:
-        scripts-path: ${{ github.workspace }}\DarimarSystemWebsite\Scripts
-        offline-path: ${{ github.workspace }}\DarimarSystemWebsite\Offline
-        publish-path: ${{ github.workspace }}\DarimarSystemWebsite\bin\Release\net8.0\win-x64\publish
+        scripts-path: ${{ github.workspace }}\DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts
+        offline-path: ${{ github.workspace }}\DarimarSystemWebsite\DarimarSystemWebsite.Publish\Offline
+        publish-path: ${{ github.workspace }}\DarimarSystemWebsite\DarimarSystemWebsite\bin\Release\net8.0\win-x64\publish
         host-site-name: ${{ secrets.DARIMAR_HOST_SITE_NAME }}
         server-computer-name: ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
         server-username: ${{ secrets.DARIMAR_SERVER_USERNAME }}
@@ -40,9 +40,9 @@ jobs:
       if: ${{ startsWith(github.ref_name, 'playground') }}
       uses: ./.github/actions/publish-darimar
       with:
-        scripts-path: ${{ github.workspace }}\DarimarSystemWebsite\Scripts
-        offline-path: ${{ github.workspace }}\DarimarSystemWebsite\Offline
-        publish-path: ${{ github.workspace }}\DarimarSystemWebsite\bin\Release\net8.0\win-x64\publish
+        scripts-path: ${{ github.workspace }}\DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts
+        offline-path: ${{ github.workspace }}\DarimarSystemWebsite\DarimarSystemWebsite.Publish\Offline
+        publish-path: ${{ github.workspace }}\DarimarSystemWebsite\DarimarSystemWebsite\bin\Release\net8.0\win-x64\publish
         host-site-name: ${{ secrets.DARIMAR_HOST_SITE_NAME_PLAYGROUND }}
         server-computer-name: ${{ secrets.DARIMAR_SERVER_COMPUTER_NAME }}
         server-username: ${{ secrets.DARIMAR_SERVER_USERNAME }}

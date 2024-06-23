@@ -1,9 +1,43 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.9.34701.34
+VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarimarSystemWebsite", "DarimarSystemWebsite\DarimarSystemWebsite.csproj", "{1A1F43FF-EE5F-44B8-8226-7DD35DFBE79F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarimarSystemWebsite", "DarimarSystemWebsite\DarimarSystemWebsite\DarimarSystemWebsite.csproj", "{0820621E-80A7-44F5-BAF9-A205050F6630}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarimarSystemWebsite.Client", "DarimarSystemWebsite\DarimarSystemWebsite.Client\DarimarSystemWebsite.Client.csproj", "{FC35CC79-1845-46D2-9238-6DF7EE074C42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DarimarSystemWebsite.Publish", "DarimarSystemWebsite.Publish", "{D9C069EC-D540-4ACA-9CD3-748D2DBEA50C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Offline", "Offline", "{FBA4CCF5-EC70-49F3-A8E8-83956562F761}"
+	ProjectSection(SolutionItems) = preProject
+		DarimarSystemWebsite\DarimarSystemWebsite.Publish\Offline\app_offline.htm = DarimarSystemWebsite\DarimarSystemWebsite.Publish\Offline\app_offline.htm
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{E9008D82-7652-4C61-B2B6-1B9AF3F440C9}"
+	ProjectSection(SolutionItems) = preProject
+		DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Publish_MsDeploy.ps1 = DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Publish_MsDeploy.ps1
+		DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Start_MsDeploy.ps1 = DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Start_MsDeploy.ps1
+		DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Stop_MsDeploy.ps1 = DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Stop_MsDeploy.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DarimarSystemWebsite.GitHub.Actions", "DarimarSystemWebsite.GitHub.Actions", "{6853887F-8944-4AFF-9A42-6F34F26A0406}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DarimarSystemWebsite.GitHub.Workflows", "DarimarSystemWebsite.GitHub.Workflows", "{7D2196AE-323A-4AB0-85DE-4D67F47C5540}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\codeql.yml = .github\workflows\codeql.yml
+		.github\workflows\publish.yml = .github\workflows\publish.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "publish-darimar", "publish-darimar", "{F613EF42-B397-427E-BD6A-40B00CF08A5D}"
+	ProjectSection(SolutionItems) = preProject
+		.github\actions\publish-darimar\action.yml = .github\actions\publish-darimar\action.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DarimarSystemWebsite.GitHub.Configurations", "DarimarSystemWebsite.GitHub.Configurations", "{4E9DDA22-AE60-4B34-B644-E4E80EDC1576}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +45,24 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A1F43FF-EE5F-44B8-8226-7DD35DFBE79F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A1F43FF-EE5F-44B8-8226-7DD35DFBE79F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A1F43FF-EE5F-44B8-8226-7DD35DFBE79F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A1F43FF-EE5F-44B8-8226-7DD35DFBE79F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0820621E-80A7-44F5-BAF9-A205050F6630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0820621E-80A7-44F5-BAF9-A205050F6630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0820621E-80A7-44F5-BAF9-A205050F6630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0820621E-80A7-44F5-BAF9-A205050F6630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC35CC79-1845-46D2-9238-6DF7EE074C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC35CC79-1845-46D2-9238-6DF7EE074C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC35CC79-1845-46D2-9238-6DF7EE074C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC35CC79-1845-46D2-9238-6DF7EE074C42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FBA4CCF5-EC70-49F3-A8E8-83956562F761} = {D9C069EC-D540-4ACA-9CD3-748D2DBEA50C}
+		{E9008D82-7652-4C61-B2B6-1B9AF3F440C9} = {D9C069EC-D540-4ACA-9CD3-748D2DBEA50C}
+		{F613EF42-B397-427E-BD6A-40B00CF08A5D} = {6853887F-8944-4AFF-9A42-6F34F26A0406}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {05695215-0F02-4E5F-A571-C5CE9FA7AA8C}
+		SolutionGuid = {1EFA7903-4CA2-4458-B656-8EFC547DF273}
 	EndGlobalSection
 EndGlobal
