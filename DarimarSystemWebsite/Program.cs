@@ -31,6 +31,7 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(DarimarSystemWebsite.Client._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(DarimarSystemWebsite.Client._Imports).Assembly)
+    .AddAdditionalAssemblies(typeof(DarimarSystemWebsite.Framework._Imports).Assembly);
 
 app.Run();

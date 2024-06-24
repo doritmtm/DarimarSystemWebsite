@@ -3,22 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite", "DarimarSystemWebsite\DarimarSystemWebsite\DarimarSystemWebsite.csproj", "{0820621E-80A7-44F5-BAF9-A205050F6630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite", "DarimarSystemWebsite\DarimarSystemWebsite.csproj", "{0820621E-80A7-44F5-BAF9-A205050F6630}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Client", "DarimarSystemWebsite\DarimarSystemWebsite.Client\DarimarSystemWebsite.Client.csproj", "{FC35CC79-1845-46D2-9238-6DF7EE074C42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Client", "DarimarSystemWebsite.Client\DarimarSystemWebsite.Client.csproj", "{FC35CC79-1845-46D2-9238-6DF7EE074C42}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DarimarSystemWebsite.Publish", "DarimarSystemWebsite.Publish", "{D9C069EC-D540-4ACA-9CD3-748D2DBEA50C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Offline", "Offline", "{FBA4CCF5-EC70-49F3-A8E8-83956562F761}"
 	ProjectSection(SolutionItems) = preProject
-		DarimarSystemWebsite\DarimarSystemWebsite.Publish\Offline\app_offline.htm = DarimarSystemWebsite\DarimarSystemWebsite.Publish\Offline\app_offline.htm
+		DarimarSystemWebsite.Publish\Offline\app_offline.htm = DarimarSystemWebsite.Publish\Offline\app_offline.htm
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{E9008D82-7652-4C61-B2B6-1B9AF3F440C9}"
 	ProjectSection(SolutionItems) = preProject
-		DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Publish_MsDeploy.ps1 = DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Publish_MsDeploy.ps1
-		DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Start_MsDeploy.ps1 = DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Start_MsDeploy.ps1
-		DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Stop_MsDeploy.ps1 = DarimarSystemWebsite\DarimarSystemWebsite.Publish\Scripts\Stop_MsDeploy.ps1
+		DarimarSystemWebsite.Publish\Scripts\Publish_MsDeploy.ps1 = DarimarSystemWebsite.Publish\Scripts\Publish_MsDeploy.ps1
+		DarimarSystemWebsite.Publish\Scripts\Start_MsDeploy.ps1 = DarimarSystemWebsite.Publish\Scripts\Start_MsDeploy.ps1
+		DarimarSystemWebsite.Publish\Scripts\Stop_MsDeploy.ps1 = DarimarSystemWebsite.Publish\Scripts\Stop_MsDeploy.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DarimarSystemWebsite.GitHub.Actions", "DarimarSystemWebsite.GitHub.Actions", "{6853887F-8944-4AFF-9A42-6F34F26A0406}"
@@ -39,9 +39,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DarimarSystemWebsite.GitHub
 		.github\dependabot.yml = .github\dependabot.yml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Framework", "DarimarSystemWebsite\DarimarSystemWebsite.Framework\DarimarSystemWebsite.Framework.csproj", "{F86A7317-E7BD-4644-B5D8-620C8CD8E949}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Framework", "DarimarSystemWebsite.Framework\DarimarSystemWebsite.Framework.csproj", "{F86A7317-E7BD-4644-B5D8-620C8CD8E949}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Interfaces", "DarimarSystemWebsite\DarimarSystemWebsite.Interfaces\DarimarSystemWebsite.Interfaces.csproj", "{ACA4967A-1A0E-4D61-9A1F-A5ADA4111069}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Interfaces", "DarimarSystemWebsite.Interfaces\DarimarSystemWebsite.Interfaces.csproj", "{ACA4967A-1A0E-4D61-9A1F-A5ADA4111069}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
