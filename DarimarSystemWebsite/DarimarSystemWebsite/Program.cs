@@ -1,4 +1,3 @@
-using DarimarSystemWebsite.Client.Pages;
 using DarimarSystemWebsite.Components;
 
 var builder = WebApplication.CreateBuilder(args);
