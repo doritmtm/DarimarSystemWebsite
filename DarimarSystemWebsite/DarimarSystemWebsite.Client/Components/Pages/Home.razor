@@ -1,7 +1,24 @@
 ﻿@page "/"
 
+@inherits DarimarSystemComponent
+
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+@if (IsPreRendering)
+{
+    <PreRenderingContent>
+        <Loading />
+    </PreRenderingContent>
+}
+else if (ReadyToRender())
+{
 
-Welcome to your new app.
+    <h1>Hello, world!</h1>
+
+    @:Welcome to your new app.
+
+}
+else
+{
+    base.BuildRenderTree(__builder);
+}
