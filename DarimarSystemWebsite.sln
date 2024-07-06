@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DarimarSystemWebsite.GitHub
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Framework", "DarimarSystemWebsite.Framework\DarimarSystemWebsite.Framework.csproj", "{F86A7317-E7BD-4644-B5D8-620C8CD8E949}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Interfaces", "DarimarSystemWebsite.Interfaces\DarimarSystemWebsite.Interfaces.csproj", "{ACA4967A-1A0E-4D61-9A1F-A5ADA4111069}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Framework.Interfaces", "DarimarSystemWebsite.Framework.Interfaces\DarimarSystemWebsite.Framework.Interfaces.csproj", "{ACA4967A-1A0E-4D61-9A1F-A5ADA4111069}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

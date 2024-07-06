@@ -1,6 +1,10 @@
 using DarimarSystemWebsite.Components;
+using DarimarSystemWebsite.Framework.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
+
+StaticSettings.AppAssembly = typeof(Program).Assembly;
+StaticSettings.AdditionalAssemblies = [typeof(DarimarSystemWebsite.Client._Imports).Assembly, typeof(DarimarSystemWebsite.Framework._Imports).Assembly];
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -18,7 +22,6 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }

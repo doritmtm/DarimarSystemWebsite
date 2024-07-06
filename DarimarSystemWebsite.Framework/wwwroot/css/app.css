@@ -2,6 +2,33 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.flexbox {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.flexbox .row {
+  border: 1px dotted grey;
+}
+
+.flexbox .row.header {
+  flex: 0 1 auto;
+}
+
+.flexbox .row.content {
+  flex: 1 1 auto;
+}
+
+.flexbox .row.footer {
+  flex: 0 1 40px;
+}
+
 a, .btn-link {
     color: #006bb7;
 }

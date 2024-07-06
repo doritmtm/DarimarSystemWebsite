@@ -1,0 +1,16 @@
+﻿@inherits DarimarSystemComponent
+
+@if (IsPreRendering)
+{
+    @PageDefinitions?.PreRenderingContent?.ChildContent
+}
+else if (ReadyToRender())
+{
+    @PageDefinitions?.PageContent?.ChildContent
+}
+else
+{
+    <Loading />
+}
+
+

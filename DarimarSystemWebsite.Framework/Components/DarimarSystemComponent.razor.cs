@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Concurrent;
 
 namespace DarimarSystemWebsite.Framework.Components
 {
@@ -7,6 +8,9 @@ namespace DarimarSystemWebsite.Framework.Components
     {
         [CascadingParameter]
         private HttpContext? _httpContext { get; set; }
+
+        [Parameter]
+        public RenderFragment? ChildContent { get; set; }
 
         public bool IsPreRendering { get { return (_httpContext != null); } }
 

@@ -2,7 +2,7 @@
 
 namespace DarimarSystemWebsite.Framework.Components
 {
-    public partial class PreRenderingContent : DarimarSystemComponent
+    public partial class PageContent : DarimarSystemComponent
     {
         [CascadingParameter]
         public PageDefinitions? PageDefinitions { get; set; }
@@ -13,7 +13,7 @@ namespace DarimarSystemWebsite.Framework.Components
 
             if (PageDefinitions != null)
             {
-                PageDefinitions.PreRenderingContent = this;
+                PageDefinitions.PageContent = this;
             }
         }
     }

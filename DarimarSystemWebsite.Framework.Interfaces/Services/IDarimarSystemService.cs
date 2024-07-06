@@ -1,4 +1,4 @@
-﻿namespace DarimarSystemWebsite.Interfaces.Services
+﻿namespace DarimarSystemWebsite.Framework.Interfaces.Services
 {
     public interface IDarimarSystemService
     {
