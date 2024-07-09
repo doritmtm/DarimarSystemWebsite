@@ -1,21 +1,27 @@
-﻿<!DOCTYPE html>
+﻿@inject IConfiguration Configuration
+
+@{
+    string? version = Configuration["Version"];
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <link rel="stylesheet" href="_content/DarimarSystemWebsite.Framework/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="_content/DarimarSystemWebsite.Framework/css/app.css" />
-    <link rel="stylesheet" href="DarimarSystemWebsite.styles.css" />
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="_content/DarimarSystemWebsite.Framework/css/bootstrap.min.css?vers=@version" />
+    <link rel="stylesheet" href="_content/DarimarSystemWebsite.Framework/css/app.css?vers=@version" />
+    <link rel="stylesheet" href="DarimarSystemWebsite.styles.css?vers=@version" />
+    <link rel="icon" type="image/png" href="favicon.png?vers=@version" />
     <HeadOutlet @rendermode="StaticSettings.GlobalRenderMode" />
 </head>
 
 <body>
     <Routes @rendermode="StaticSettings.GlobalRenderMode" />
-    <script src="_content/DarimarSystemWebsite.Framework/js/bootstrap.bundle.min.js"></script>
-    <script src="_framework/blazor.web.js"></script>
+    <script src="_content/DarimarSystemWebsite.Framework/js/bootstrap.bundle.min.js?vers=@version"></script>
+    <script src="_framework/blazor.web.js?vers=@version"></script>
 </body>
 
 </html>
