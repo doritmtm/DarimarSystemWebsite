@@ -16,7 +16,7 @@ namespace DarimarSystemWebsite.Framework.Components
 
         public virtual bool ReadyToRender()
         {
-            return !IsPreRendering;
+            return true;
         }
 
         public virtual void Update()

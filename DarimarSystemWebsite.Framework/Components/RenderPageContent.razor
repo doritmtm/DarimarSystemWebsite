@@ -1,16 +1,28 @@
 ﻿@inherits DarimarSystemComponent
 
-@if (IsPreRendering)
+@if (@PageDefinitions?.PreRenderingContent != null)
 {
-    @PageDefinitions?.PreRenderingContent?.ChildContent
-}
-else if (ReadyToRender())
-{
-    @PageDefinitions?.PageContent?.ChildContent
+    @if (IsPreRendering)
+    {
+        @PageDefinitions?.PreRenderingContent.ChildContent
+    }
+    else if (ReadyToRender())
+    {
+        @PageDefinitions?.PageContent?.ChildContent
+    }
+    else
+    {
+        <Loading />
+    }
 }
 else
 {
-    <Loading />
+    if (ReadyToRender())
+    {
+        @PageDefinitions?.PageContent?.ChildContent
+    }
+    else
+    {
+        <Loading />
+    }
 }
-
-
