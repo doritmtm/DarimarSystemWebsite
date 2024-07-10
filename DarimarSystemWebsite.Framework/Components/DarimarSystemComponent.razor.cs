@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using DarimarSystemWebsite.Framework.Interfaces.Services;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
-using System.Collections.Concurrent;
 
 namespace DarimarSystemWebsite.Framework.Components
 {
     public partial class DarimarSystemComponent : ComponentBase
     {
+        [Inject]
+        public IDarimarSystemService? DarimarSystemService { get; set; }
+
         [CascadingParameter]
         private HttpContext? _httpContext { get; set; }
 

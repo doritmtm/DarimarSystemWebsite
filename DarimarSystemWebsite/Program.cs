@@ -1,5 +1,7 @@
 using DarimarSystemWebsite.Components;
+using DarimarSystemWebsite.Framework;
 using DarimarSystemWebsite.Framework.Settings;
+using DarimarSystemWebsite.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddResourceAccess();
+builder.Services.AddDarimarSystemServices();
 
 var app = builder.Build();
 
