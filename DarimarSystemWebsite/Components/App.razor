@@ -22,6 +22,12 @@
     <Routes @rendermode="StaticSettings.GlobalRenderMode" />
     <script src="_content/DarimarSystemWebsite.Framework/js/bootstrap.bundle.min.js?vers=@version"></script>
     <script src="_framework/blazor.web.js?vers=@version"></script>
+    <script>
+        window.blazorCulture = {
+            get: () => window.localStorage['BlazorCulture'],
+            set: (value) => window.localStorage['BlazorCulture'] = value
+        };
+    </script>
 </body>
 
 </html>

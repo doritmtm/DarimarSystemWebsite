@@ -7,17 +7,17 @@ namespace DarimarSystemWebsite.Framework.Services
     {
         private ILanguageService _languageService;
 
-        private LanguageEnum _currentLanguage = LanguageEnum.Romana;
+        public LanguageEnum CurrentLanguage { get; set; } = LanguageEnum.Romana;
 
         public DarimarSystemService(ILanguageService languageService)
         {
             _languageService = languageService;
-            _languageService.ChangeLanguage(_currentLanguage);
+            _languageService.ChangeLanguage(CurrentLanguage);
         }
 
         public void ChangeLanguage(LanguageEnum language)
         {
-            _currentLanguage = language;
+            CurrentLanguage = language;
             _languageService.ChangeLanguage(language);
         }
 

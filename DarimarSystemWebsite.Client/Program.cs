@@ -1,4 +1,5 @@
 using DarimarSystemWebsite.Framework;
+using DarimarSystemWebsite.Framework.Interfaces.Services;
 using DarimarSystemWebsite.Framework.Settings;
 using DarimarSystemWebsite.Resources;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -16,5 +17,8 @@ StaticSettings.ResourcesClass = typeof(SiteResources);
 builder.Services.AddDarimarSystemServices();
 
 var app = builder.Build();
+
+var darimarSystemService = app.Services.GetRequiredService<IDarimarSystemService>();
+darimarSystemService.ChangeLanguage(darimarSystemService.CurrentLanguage);
 
 await app.RunAsync();
