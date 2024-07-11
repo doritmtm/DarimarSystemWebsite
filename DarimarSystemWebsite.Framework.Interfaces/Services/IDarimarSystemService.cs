@@ -4,7 +4,7 @@ namespace DarimarSystemWebsite.Framework.Interfaces.Services
 {
     public interface IDarimarSystemService
     {
-        public string? GetLocalizedString(string nameID);
         public void ChangeLanguage(LanguageEnum language);
+        public string? GetLocalizedString(string nameID);
     }
 }

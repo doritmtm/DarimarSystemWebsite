@@ -2,11 +2,16 @@ using DarimarSystemWebsite.Components;
 using DarimarSystemWebsite.Framework;
 using DarimarSystemWebsite.Framework.Settings;
 using DarimarSystemWebsite.Resources;
+using Microsoft.Extensions.Localization;
+
+// Microsoft.Extensions.Localization namespace to look for resources
+[assembly: RootNamespace("DarimarSystemWebsite.Resources")]
 
 var builder = WebApplication.CreateBuilder(args);
 
 StaticSettings.AppAssembly = typeof(Program).Assembly;
 StaticSettings.AdditionalAssemblies = [typeof(DarimarSystemWebsite.Client._Imports).Assembly, typeof(DarimarSystemWebsite.Framework._Imports).Assembly];
+StaticSettings.ResourcesClass = typeof(SiteResources);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -15,7 +20,6 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddResourceAccess();
 builder.Services.AddDarimarSystemServices();
 
 var app = builder.Build();

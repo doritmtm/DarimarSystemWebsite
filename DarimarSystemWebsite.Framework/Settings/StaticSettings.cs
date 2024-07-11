@@ -11,5 +11,7 @@ namespace DarimarSystemWebsite.Framework.Settings
         public static Assembly AppAssembly { get; set; } = typeof(StaticSettings).Assembly;
 
         public static IEnumerable<Assembly> AdditionalAssemblies { get; set; } = [];
+
+        public static Type? ResourcesClass { get; set; }
     }
 }

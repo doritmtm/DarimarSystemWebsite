@@ -10,6 +10,7 @@ namespace DarimarSystemWebsite.Framework
         {
             services.AddScoped<IDarimarSystemService, DarimarSystemService>();
             services.AddScoped<ILanguageService, LanguageService>();
+            services.AddLocalization();
 
             return services;
         }
