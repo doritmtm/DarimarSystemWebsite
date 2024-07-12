@@ -1,5 +1,7 @@
+using DarimarSystemWebsite.Client;
 using DarimarSystemWebsite.Components;
 using DarimarSystemWebsite.Framework;
+using DarimarSystemWebsite.Framework.Interfaces.Enums;
 using DarimarSystemWebsite.Framework.Settings;
 using DarimarSystemWebsite.Resources;
 using Microsoft.Extensions.Localization;
@@ -12,6 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 StaticSettings.AppAssembly = typeof(Program).Assembly;
 StaticSettings.AdditionalAssemblies = [typeof(DarimarSystemWebsite.Client._Imports).Assembly, typeof(DarimarSystemWebsite.Framework._Imports).Assembly];
 StaticSettings.ResourcesClass = typeof(SiteResources);
+StaticSettings.SupportedLanguages.Add(LanguageEnum.English);
+StaticSettings.SupportedLanguages.Add(LanguageEnum.Romana);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -21,6 +25,7 @@ builder.Services.AddRazorComponents()
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDarimarSystemServices();
+builder.Services.AddScoped<IServerApp, ServerApp>();
 
 var app = builder.Build();
 

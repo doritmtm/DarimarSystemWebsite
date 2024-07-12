@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Framew
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Framework.Interfaces", "DarimarSystemWebsite.Framework.Interfaces\DarimarSystemWebsite.Framework.Interfaces.csproj", "{ACA4967A-1A0E-4D61-9A1F-A5ADA4111069}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarimarSystemWebsite.Resources", "DarimarSystemWebsite.Resources\DarimarSystemWebsite.Resources.csproj", "{04185564-74CD-490D-97E4-3AAB8F772A6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarimarSystemWebsite.Resources", "DarimarSystemWebsite.Resources\DarimarSystemWebsite.Resources.csproj", "{04185564-74CD-490D-97E4-3AAB8F772A6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

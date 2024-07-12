@@ -1,7 +1,9 @@
 ﻿@inject IConfiguration Configuration
+@inject IServerApp ServerApp
 
 @{
     string? version = Configuration["Version"];
+    ServerApp.Initialize();
 }
 
 <!DOCTYPE html>

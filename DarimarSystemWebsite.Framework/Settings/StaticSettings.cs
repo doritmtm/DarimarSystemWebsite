@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using DarimarSystemWebsite.Framework.Interfaces.Enums;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Reflection;
 
@@ -13,5 +14,7 @@ namespace DarimarSystemWebsite.Framework.Settings
         public static IEnumerable<Assembly> AdditionalAssemblies { get; set; } = [];
 
         public static Type? ResourcesClass { get; set; }
+
+        public static HashSet<LanguageEnum> SupportedLanguages { get; set; } = [];
     }
 }
