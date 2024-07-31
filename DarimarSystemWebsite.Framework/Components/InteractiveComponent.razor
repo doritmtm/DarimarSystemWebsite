@@ -1,0 +1,10 @@
+﻿@inherits DarimarSystemComponent
+
+@if (IsPreRendering || !ReadyToRender())
+{
+    <InteractiveComponentLoading />
+}
+else
+{
+    @ChildContent
+}
