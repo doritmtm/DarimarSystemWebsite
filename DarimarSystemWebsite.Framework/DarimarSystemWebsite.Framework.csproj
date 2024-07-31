@@ -11,10 +11,16 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.7" />
+    <PackageReference Include="MudBlazor" Version="7.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DarimarSystemWebsite.Framework.Interfaces\DarimarSystemWebsite.Framework.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>
