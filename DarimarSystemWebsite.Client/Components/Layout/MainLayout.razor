@@ -6,16 +6,24 @@
 <MudSnackbarProvider />
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <InteractiveComponent>
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        </InteractiveComponent>
         <MudSpacer />
         <InteractiveComponent>
             <LanguageSwitcher />
+        </InteractiveComponent>
+        <InteractiveComponent>
             <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
         </InteractiveComponent>
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        <InteractiveComponent>
+            <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        </InteractiveComponent>
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-        <NavMenu />
+        <InteractiveComponent LoadingType="InteractiveComponentLoadingTypeEnum.Skeleton">
+            <NavMenu />
+        </InteractiveComponent>
     </MudDrawer>
     <MudMainContent Class="mt-16 pa-4">
         <MudContainer Class="mt-2" MaxWidth="MaxWidth.ExtraLarge">

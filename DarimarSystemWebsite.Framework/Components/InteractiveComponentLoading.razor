@@ -1,3 +1,15 @@
 ﻿@inherits DarimarSystemComponent
 
-<MudProgressCircular Size="Size.Small" Color="Color.Default" Indeterminate="true" />
+@switch (LoadingType)
+{
+    case InteractiveComponentLoadingTypeEnum.Circular:
+    {
+        <MudProgressCircular Size="Size.Small" Color="Color.Default" Indeterminate="true" Class="ma-2 align-self-center" />
+        break;
+    }
+    case InteractiveComponentLoadingTypeEnum.Skeleton:
+    {
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Width="30px" Height="30px" Class="ma-2 align-self-center" Style="background-color: color-mix(in srgb, var(--mud-palette-text-primary), transparent 88%);" />
+        break;
+    }
+}
