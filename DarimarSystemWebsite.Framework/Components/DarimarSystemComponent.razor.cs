@@ -8,7 +8,10 @@ namespace DarimarSystemWebsite.Framework.Components
     public partial class DarimarSystemComponent : ComponentBase, IDarimarSystemComponent
     {
         [Inject]
-        public IDarimarSystemService? DarimarSystemService { get; set; }
+        public required IDarimarSystemService DarimarSystemService { get; set; }
+
+        [Inject]
+        public required NavigationManager NavigationManager { get; set; }
 
         [CascadingParameter]
         private HttpContext? _httpContext { get; set; }
@@ -22,7 +25,7 @@ namespace DarimarSystemWebsite.Framework.Components
         {
             base.OnInitialized();
 
-            DarimarSystemService?.DarimarSystemComponents.Enqueue(this);
+            DarimarSystemService.DarimarSystemComponents.Enqueue(this);
         }
 
         public virtual bool ReadyToRender()
@@ -33,6 +36,12 @@ namespace DarimarSystemWebsite.Framework.Components
         public virtual void Update()
         {
             InvokeAsync(StateHasChanged);
+        }
+
+        public string GetCurrentHref()
+        {
+            string currentHref = new Uri(NavigationManager.Uri).AbsolutePath;
+            return String.IsNullOrEmpty(currentHref) ? "/" : currentHref;
         }
     }
 }

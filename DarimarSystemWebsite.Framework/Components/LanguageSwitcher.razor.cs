@@ -7,13 +7,13 @@ namespace DarimarSystemWebsite.Framework.Components
     {
         public LanguageEnum? GetTheOtherLanguage()
         {
-            return StaticSettings.SupportedLanguages.Where((lang) => lang != DarimarSystemService?.CurrentLanguage).First();
+            return StaticSettings.SupportedLanguages.Where((lang) => lang != DarimarSystemService.CurrentLanguage).First();
         }
 
         public void SwitchLanguage()
         {
-            DarimarSystemService?.ChangeLanguage(GetTheOtherLanguage()!.Value);
-            DarimarSystemService?.UpdateAllDarimarSystemComponents();
+            DarimarSystemService.ChangeLanguage(GetTheOtherLanguage()!.Value);
+            DarimarSystemService.UpdateAllDarimarSystemComponents();
         }
     }
 }

@@ -1,0 +1,10 @@
+﻿@inherits DarimarSystemComponent
+
+@if (GetCurrentHref() == Href)
+{
+    <MudButton Href="@Href" Class="@Class" Variant="Variant.Text" Color="Color.Primary" Style="text-transform:none">@ChildContent</MudButton>
+}
+else
+{
+    <MudButton Href="@Href" Class="@Class" Variant="Variant.Text" Style="text-transform:none">@ChildContent</MudButton>
+}
