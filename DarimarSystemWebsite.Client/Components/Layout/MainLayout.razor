@@ -11,10 +11,10 @@
             <NavButton Href="/" Class="ml-3">Home</NavButton>
         </InteractiveComponent>
         <InteractiveComponent>
-            <NavButton Href="counter" Class="ml-3">Counter</NavButton>
+            <NavButton Href="/counter" Class="ml-3">Counter</NavButton>
         </InteractiveComponent>
         <InteractiveComponent>
-            <NavButton Href="weather" Class="ml-3">Weather</NavButton>
+            <NavButton Href="/weather" Class="ml-3">Weather</NavButton>
         </InteractiveComponent>
         <MudSpacer />
         <div style="min-width:40px"/>
@@ -63,6 +63,7 @@
 
     private readonly PaletteLight _lightPalette = new()
         {
+            Primary = "#1b22f1",
             Black = "#110e2d",
             AppbarText = "#424242",
             AppbarBackground = "rgba(255,255,255,0.8)",
@@ -73,7 +74,7 @@
 
     private readonly PaletteDark _darkPalette = new()
         {
-            Primary = "#1b8bf1",
+            Primary = "#1b7bf1",
             Surface = "#1e1e2d",
             Background = "#1a1a27",
             BackgroundGray = "#151521",

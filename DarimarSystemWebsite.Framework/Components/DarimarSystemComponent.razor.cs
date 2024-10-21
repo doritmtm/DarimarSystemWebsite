@@ -40,7 +40,7 @@ namespace DarimarSystemWebsite.Framework.Components
 
         public string GetCurrentHref()
         {
-            string currentHref = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+            string currentHref = new Uri(NavigationManager.Uri).AbsolutePath;
             return String.IsNullOrEmpty(currentHref) ? "/" : currentHref;
         }
     }
