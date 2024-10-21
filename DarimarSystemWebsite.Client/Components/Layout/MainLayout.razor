@@ -8,13 +8,13 @@
     <MudAppBar Elevation="1" Class="px-2" Style="overflow:auto">
         <MudText Class="mx-2" Style="white-space:nowrap">Darimar System</MudText>
         <InteractiveComponent>
-            <MudButton Href="/" Class="ml-3" Variant="Variant.Text" Style="text-transform:none">Home</MudButton>
+            <NavButton Href="/" Class="ml-3">Home</NavButton>
         </InteractiveComponent>
         <InteractiveComponent>
-            <MudButton Href="counter" Class="ml-3" Variant="Variant.Text" Style="text-transform:none">Counter</MudButton>
+            <NavButton Href="counter" Class="ml-3">Counter</NavButton>
         </InteractiveComponent>
         <InteractiveComponent>
-            <MudButton Href="weather" Class="ml-3" Variant="Variant.Text" Style="text-transform:none">Weather</MudButton>
+            <NavButton Href="weather" Class="ml-3">Weather</NavButton>
         </InteractiveComponent>
         <MudSpacer />
         <div style="min-width:40px"/>
@@ -73,7 +73,7 @@
 
     private readonly PaletteDark _darkPalette = new()
         {
-            Primary = "#7e6fff",
+            Primary = "#1b8bf1",
             Surface = "#1e1e2d",
             Background = "#1a1a27",
             BackgroundGray = "#151521",
