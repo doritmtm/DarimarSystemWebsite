@@ -7,7 +7,7 @@ namespace DarimarSystemWebsite.Framework.Settings
 {
     public static class StaticSettings
     {
-        public static IComponentRenderMode GlobalRenderMode = RenderMode.InteractiveAuto;
+        public static IComponentRenderMode GlobalRenderMode { get; set; } = RenderMode.InteractiveServer;
 
         public static Assembly AppAssembly { get; set; } = typeof(StaticSettings).Assembly;
 
