@@ -10,6 +10,7 @@ namespace DarimarSystemWebsite.Framework.Interfaces.Services
         public ConcurrentQueue<IDarimarSystemComponent> DarimarSystemComponents { get; set; }
         public void ChangeLanguage(LanguageEnum language);
         public string? GetLocalizedString(string nameID);
+        public string GetAppVersion();
         public void UpdateAllDarimarSystemComponents();
     }
 }

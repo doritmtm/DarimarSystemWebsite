@@ -2,6 +2,7 @@
 using DarimarSystemWebsite.Framework.Interfaces.Enums;
 using DarimarSystemWebsite.Framework.Interfaces.Services;
 using DarimarSystemWebsite.Framework.Settings;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Concurrent;
 
 namespace DarimarSystemWebsite.Framework.Services
@@ -10,13 +11,16 @@ namespace DarimarSystemWebsite.Framework.Services
     {
         private ILanguageService _languageService;
 
+        private IConfiguration _configurationService;
+
         public LanguageEnum CurrentLanguage { get; set; } = LanguageEnum.Romana;
 
         public ConcurrentQueue<IDarimarSystemComponent> DarimarSystemComponents { get; set; } = [];
 
-        public DarimarSystemService(ILanguageService languageService)
+        public DarimarSystemService(ILanguageService languageService, IConfiguration configurationService)
         {
             _languageService = languageService;
+            _configurationService = configurationService;
         }
 
         public void ChangeLanguage(LanguageEnum language)
@@ -35,6 +39,18 @@ namespace DarimarSystemWebsite.Framework.Services
         public string? GetLocalizedString(string nameID)
         {
             return _languageService.GetLocalizedString(nameID);
+        }
+
+        public string GetAppVersion()
+        {
+            string? version = _configurationService["Version"];
+
+            if (version != null)
+            {
+                return version;
+            }
+
+            throw new NotSupportedException("The version must be defined as Version inside the main app appsettings.json");
         }
 
         public void UpdateAllDarimarSystemComponents()

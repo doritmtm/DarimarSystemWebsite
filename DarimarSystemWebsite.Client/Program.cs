@@ -3,6 +3,7 @@ using DarimarSystemWebsite.Framework;
 using DarimarSystemWebsite.Framework.Interfaces.Enums;
 using DarimarSystemWebsite.Framework.Settings;
 using DarimarSystemWebsite.Resources;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Localization;
 
@@ -16,6 +17,7 @@ StaticSettings.AdditionalAssemblies = [typeof(DarimarSystemWebsite.Client._Impor
 StaticSettings.ResourcesClass = typeof(SiteResources);
 StaticSettings.SupportedLanguages.Add(LanguageEnum.English);
 StaticSettings.SupportedLanguages.Add(LanguageEnum.Romana);
+StaticSettings.GlobalRenderMode = RenderMode.InteractiveWebAssembly;
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 

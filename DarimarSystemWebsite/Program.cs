@@ -4,6 +4,7 @@ using DarimarSystemWebsite.Framework;
 using DarimarSystemWebsite.Framework.Interfaces.Enums;
 using DarimarSystemWebsite.Framework.Settings;
 using DarimarSystemWebsite.Resources;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Localization;
 
 // Microsoft.Extensions.Localization namespace to look for resources
@@ -16,6 +17,7 @@ StaticSettings.AdditionalAssemblies = [typeof(DarimarSystemWebsite.Client._Impor
 StaticSettings.ResourcesClass = typeof(SiteResources);
 StaticSettings.SupportedLanguages.Add(LanguageEnum.English);
 StaticSettings.SupportedLanguages.Add(LanguageEnum.Romana);
+StaticSettings.GlobalRenderMode = RenderMode.InteractiveServer;
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

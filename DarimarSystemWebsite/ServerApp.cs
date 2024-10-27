@@ -1,5 +1,5 @@
-﻿using DarimarSystemWebsite.Framework.Interfaces.Enums;
-using DarimarSystemWebsite.Framework.Interfaces.Services;
+﻿using DarimarSystemWebsite.Framework.Interfaces.Services;
+using DarimarSystemWebsite.Framework.Settings;
 
 namespace DarimarSystemWebsite.Client
 {
@@ -15,6 +15,7 @@ namespace DarimarSystemWebsite.Client
         public void Initialize()
         {
             _darimarSystemService.ChangeLanguage(_darimarSystemService.CurrentLanguage);
+            StaticSettings.Version = _darimarSystemService.GetAppVersion();
         }
     }
 }
