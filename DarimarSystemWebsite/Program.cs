@@ -1,3 +1,4 @@
+using BitzArt.Blazor.Cookies;
 using DarimarSystemWebsite.Client;
 using DarimarSystemWebsite.Components;
 using DarimarSystemWebsite.Framework;
@@ -26,6 +27,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddHttpContextAccessor();
 
+builder.AddBlazorCookies();
 builder.Services.AddDarimarSystemServices();
 builder.Services.AddScoped<IServerApp, ServerApp>();
 

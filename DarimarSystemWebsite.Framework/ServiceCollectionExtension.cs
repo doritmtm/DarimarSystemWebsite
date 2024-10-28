@@ -12,8 +12,11 @@ namespace DarimarSystemWebsite.Framework
             // Add MudBlazor services
             services.AddMudServices();
 
+            services.AddScoped<IServiceHelperComponentHostService, ServiceHelperComponentHostService>();
+            services.AddScoped<IHostTypeInformationService, HostTypeInformationService>();
             services.AddScoped<IDarimarSystemService, DarimarSystemService>();
             services.AddScoped<ILanguageService, LanguageService>();
+            services.AddScoped<IClientPreferencesService, ClientPreferencesService>();
             services.AddLocalization();
 
             return services;

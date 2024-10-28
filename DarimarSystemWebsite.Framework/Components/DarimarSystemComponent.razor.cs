@@ -2,6 +2,7 @@
 using DarimarSystemWebsite.Framework.Interfaces.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
+using Microsoft.JSInterop;
 
 namespace DarimarSystemWebsite.Framework.Components
 {
@@ -9,6 +10,9 @@ namespace DarimarSystemWebsite.Framework.Components
     {
         [Inject]
         public required IDarimarSystemService DarimarSystemService { get; set; }
+
+        [Inject]
+        public required IJSRuntime JSRuntime { get; set; }
 
         [Inject]
         public required NavigationManager NavigationManager { get; set; }

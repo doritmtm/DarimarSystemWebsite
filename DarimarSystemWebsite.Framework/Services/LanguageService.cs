@@ -2,20 +2,21 @@
 using DarimarSystemWebsite.Framework.Interfaces.Services;
 using DarimarSystemWebsite.Framework.Settings;
 using Microsoft.Extensions.Localization;
-using Microsoft.JSInterop;
 using System.Globalization;
 
 namespace DarimarSystemWebsite.Framework.Services
 {
     public class LanguageService : ILanguageService
     {
+        private IServiceHelperComponentHostService _serviceHelperComponentHostService;
+
         private IStringLocalizerFactory _stringLocalizerFactory;
-        private IJSRuntime _jsRuntime;
 
         private IStringLocalizer _stringLocalizer;
 
-        public LanguageService(IStringLocalizerFactory stringLocalizerFactory, IJSRuntime jsRuntime)
+        public LanguageService(IServiceHelperComponentHostService serviceHelperComponentHostService, IStringLocalizerFactory stringLocalizerFactory)
         {
+            _serviceHelperComponentHostService = serviceHelperComponentHostService;
             _stringLocalizerFactory = stringLocalizerFactory;
             if (StaticSettings.ResourcesClass != null)
             {
@@ -25,7 +26,6 @@ namespace DarimarSystemWebsite.Framework.Services
             {
                 throw new NotSupportedException("StaticSettings.ResourcesClass must be defined");
             }
-            _jsRuntime = jsRuntime;
         }
 
         public CultureInfo GetCultureInfoForLanguage(LanguageEnum language)
@@ -41,15 +41,13 @@ namespace DarimarSystemWebsite.Framework.Services
             return new CultureInfo("en-US");
         }
 
-        public async Task ChangeLanguage(LanguageEnum language)
+        public void ChangeLanguage(LanguageEnum language)
         {
             CultureInfo culture = GetCultureInfoForLanguage(language);
             CultureInfo.CurrentCulture = culture;
             CultureInfo.CurrentUICulture = culture;
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
-
-            await _jsRuntime.InvokeVoidAsync("blazorCulture.set", culture);
         }
 
         public string GetLocalizedString(string nameID)

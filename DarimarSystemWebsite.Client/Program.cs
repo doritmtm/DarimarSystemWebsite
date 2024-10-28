@@ -1,3 +1,4 @@
+using BitzArt.Blazor.Cookies;
 using DarimarSystemWebsite.Client;
 using DarimarSystemWebsite.Framework;
 using DarimarSystemWebsite.Framework.Interfaces.Enums;
@@ -20,6 +21,8 @@ StaticSettings.SupportedLanguages.Add(LanguageEnum.Romana);
 StaticSettings.GlobalRenderMode = RenderMode.InteractiveWebAssembly;
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+builder.AddBlazorCookies();
 
 builder.Services.AddDarimarSystemServices();
 builder.Services.AddScoped<IWasmApp, WasmApp>();

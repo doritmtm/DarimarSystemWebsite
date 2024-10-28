@@ -24,8 +24,7 @@ namespace DarimarSystemWebsite.Framework.RawHTML
         public static MarkupString Scripts { get; set; } = (MarkupString)
         (
             IncludeScript("_framework/blazor.web.js").Value +
-            IncludeScript("_content/MudBlazor/MudBlazor.min.js").Value +
-            IncludeScript("_content/DarimarSystemWebsite.Framework/js/blazorCultureSwitch.js").Value
+            IncludeScript("_content/MudBlazor/MudBlazor.min.js").Value
         );
 
         public static MarkupString IncludeScript(string scriptLink)
