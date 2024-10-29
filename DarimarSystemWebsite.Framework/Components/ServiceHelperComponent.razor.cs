@@ -14,6 +14,12 @@ namespace DarimarSystemWebsite.Framework.Components
             DarimarSystemService.ServiceHelper = this;
         }
 
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            await DarimarSystemService.InitializeLanguageAsync();
+        }
+
         protected override void OnAfterRender(bool firstRender)
         {
             base.OnAfterRender(firstRender);
