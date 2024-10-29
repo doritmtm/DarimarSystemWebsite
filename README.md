@@ -3,3 +3,4 @@ Darimar System presentation website utilizing MudBlazor as presentation framewor
 
 # Credits:
 - MudBlazor (https://mudblazor.com) (https://github.com/MudBlazor/MudBlazor/)
+- Blazor.Cookies (https://github.com/BitzArt/Blazor.Cookies)
