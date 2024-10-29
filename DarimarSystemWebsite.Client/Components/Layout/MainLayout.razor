@@ -8,7 +8,10 @@
 
 <MudLayout>
     <MudAppBar Elevation="1" Class="px-2" Style="overflow:auto">
-        <MudText Class="mx-2" Style="white-space:nowrap">Darimar System</MudText>
+        @{
+            string darimarSystemLogoSvg = $"darimar-system-{(_isDarkMode ? "light" : "dark")}-high-res-logo-transparent.svg";
+        }
+        <MudImage Src="@darimarSystemLogoSvg" Width="120" Height="60"></MudImage>
         <InteractiveComponent>
             <NavButton Href="/" Class="ml-3">Home</NavButton>
         </InteractiveComponent>
