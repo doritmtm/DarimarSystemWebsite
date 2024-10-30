@@ -10,9 +10,9 @@ namespace DarimarSystemWebsite.Framework.Components
             return StaticSettings.SupportedLanguages.Where((lang) => lang != DarimarSystemService.CurrentLanguage).First();
         }
 
-        public void SwitchLanguage()
+        public async Task SwitchLanguage()
         {
-            DarimarSystemService.ChangeLanguage(GetTheOtherLanguage()!.Value);
+            await DarimarSystemService.ChangeLanguageAsync(GetTheOtherLanguage()!.Value);
             DarimarSystemService.UpdateAllDarimarSystemComponents();
         }
     }

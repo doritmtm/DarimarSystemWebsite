@@ -16,7 +16,6 @@ namespace DarimarSystemWebsite.Client
         public void Initialize()
         {
             _darimarSystemService.HostType = HostTypeEnum.WebAssembly;
-            _darimarSystemService.InitializeLanguageAsync();
             StaticSettings.Version = _darimarSystemService.GetAppVersion();
         }
     }

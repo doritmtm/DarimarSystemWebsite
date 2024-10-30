@@ -2,8 +2,9 @@
 
 namespace DarimarSystemWebsite.Framework.Interfaces.Services
 {
-    public interface IHostTypeInformationService
+    public interface IHostInformationService
     {
         public HostTypeEnum? HostType { get; set; }
+        public bool IsPreRendering { get; }
     }
 }

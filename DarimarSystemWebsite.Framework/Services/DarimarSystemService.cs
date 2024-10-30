@@ -11,7 +11,7 @@ namespace DarimarSystemWebsite.Framework.Services
     {
         private IServiceHelperComponentHostService _serviceHelperComponentHostService;
 
-        private IHostTypeInformationService _hostTypeInformationService;
+        private IHostInformationService _hostInformationService;
 
         private ILanguageService _languageService;
 
@@ -27,8 +27,8 @@ namespace DarimarSystemWebsite.Framework.Services
 
         public HostTypeEnum? HostType
         {
-            get => _hostTypeInformationService.HostType;
-            set => _hostTypeInformationService.HostType = value;
+            get => _hostInformationService.HostType;
+            set => _hostInformationService.HostType = value;
         }
 
         private LanguageEnum _defaultLanguage = LanguageEnum.Romana;
@@ -37,35 +37,30 @@ namespace DarimarSystemWebsite.Framework.Services
 
         public ConcurrentQueue<IDarimarSystemComponent> DarimarSystemComponents { get; set; } = [];
 
-        public DarimarSystemService(IServiceHelperComponentHostService serviceHelperComponentHostService, IHostTypeInformationService hostTypeInformationService, ILanguageService languageService, IConfiguration configurationService, IClientPreferencesService clientPreferencesService)
+        public DarimarSystemService(IServiceHelperComponentHostService serviceHelperComponentHostService, IHostInformationService hostInformationService, ILanguageService languageService, IConfiguration configurationService, IClientPreferencesService clientPreferencesService)
         {
             _serviceHelperComponentHostService = serviceHelperComponentHostService;
-            _hostTypeInformationService = hostTypeInformationService;
+            _hostInformationService = hostInformationService;
             _languageService = languageService;
             _configurationService = configurationService;
             _clientPreferencesService = clientPreferencesService;
             _currentLanguage = _defaultLanguage;
         }
 
-        public void InitializeLanguage()
-        {
-            LanguageEnum languagePreference = Enum.Parse<LanguageEnum>(_clientPreferencesService.GetPreference("language") ?? _defaultLanguage.ToString());
-            ChangeLanguage(languagePreference);
-        }
-
         public async Task InitializeLanguageAsync()
         {
+            _languageService.InitializeLanguages();
             LanguageEnum languagePreference = Enum.Parse<LanguageEnum>(await _clientPreferencesService.GetPreferenceAsync("language") ?? _defaultLanguage.ToString());
-            ChangeLanguage(languagePreference);
+            await ChangeLanguageAsync(languagePreference);
         }
 
-        public void ChangeLanguage(LanguageEnum language)
+        public async Task ChangeLanguageAsync(LanguageEnum language)
         {
             if (StaticSettings.SupportedLanguages.Contains(language))
             {
                 _currentLanguage = language;
                 _languageService.ChangeLanguage(language);
-                _clientPreferencesService.SetPreference("language", language.ToString());
+                await _clientPreferencesService.SetPreferenceAsync("language", language.ToString());
             }
             else
             {
@@ -75,7 +70,7 @@ namespace DarimarSystemWebsite.Framework.Services
 
         public string? GetLocalizedString(string nameID)
         {
-            return _languageService.GetLocalizedString(nameID);
+            return _languageService.GetLocalizedString(nameID, _currentLanguage);
         }
 
         public string GetAppVersion()
@@ -88,15 +83,6 @@ namespace DarimarSystemWebsite.Framework.Services
             }
 
             throw new NotSupportedException("The version must be defined as Version inside the main app appsettings.json");
-        }
-        public string? GetPreference(string name)
-        {
-            return _clientPreferencesService.GetPreference(name);
-        }
-
-        public void SetPreference(string name, string value)
-        {
-            _clientPreferencesService.SetPreference(name, value);
         }
 
         public Task<string?> GetPreferenceAsync(string name)

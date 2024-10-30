@@ -13,7 +13,9 @@ namespace DarimarSystemWebsite.Framework
             services.AddMudServices();
 
             services.AddScoped<IServiceHelperComponentHostService, ServiceHelperComponentHostService>();
-            services.AddScoped<IHostTypeInformationService, HostTypeInformationService>();
+            services.AddScoped<IHostPreRenderingService, HostPreRenderingService>();
+            services.AddScoped<IHostInformationService, HostInformationService>();
+            services.AddScoped<IPersistedPreferencesService, PersistedPreferencesService>();
             services.AddScoped<IDarimarSystemService, DarimarSystemService>();
             services.AddScoped<ILanguageService, LanguageService>();
             services.AddScoped<IClientPreferencesService, ClientPreferencesService>();

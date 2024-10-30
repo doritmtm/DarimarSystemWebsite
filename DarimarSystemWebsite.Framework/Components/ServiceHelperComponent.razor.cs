@@ -1,12 +1,13 @@
 ﻿using DarimarSystemWebsite.Framework.Interfaces.Components;
 using Microsoft.JSInterop;
+using System.Collections.Concurrent;
 
 namespace DarimarSystemWebsite.Framework.Components
 {
     public partial class ServiceHelperComponent : DarimarSystemComponent, IServiceHelperComponent
     {
-        private Queue<Action> _afterRenderActions = [];
-        private Queue<Func<Task>> _afterRenderAsyncActions = [];
+        private ConcurrentQueue<Action> _afterRenderActions = [];
+        private ConcurrentQueue<Func<Task>> _afterRenderAsyncActions = [];
 
         protected override void OnInitialized()
         {
@@ -62,14 +63,14 @@ namespace DarimarSystemWebsite.Framework.Components
             StateHasChanged();
         }
 
-        public void RunJSInvokeVoidAsyncAction(string jsFunctionName, params object?[]? jsArguments)
+        public async Task RunJSInvokeVoidAsyncAction(string jsFunctionName, params object?[]? jsArguments)
         {
-            JSRuntime.InvokeVoidAsync(jsFunctionName, jsArguments);
+            await JSRuntime.InvokeVoidAsync(jsFunctionName, jsArguments);
         }
 
-        public ReturnType RunJSInvokeAsyncAction<ReturnType>(string jsFunctionName, params object?[]? jsArguments)
+        public async Task<ReturnType> RunJSInvokeAsyncAction<ReturnType>(string jsFunctionName, params object?[]? jsArguments)
         {
-            return JSRuntime.InvokeAsync<ReturnType>(jsFunctionName, jsArguments).Result;
+            return await JSRuntime.InvokeAsync<ReturnType>(jsFunctionName, jsArguments);
         }
     }
 }

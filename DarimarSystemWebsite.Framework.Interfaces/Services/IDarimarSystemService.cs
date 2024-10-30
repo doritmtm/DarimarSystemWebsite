@@ -10,13 +10,10 @@ namespace DarimarSystemWebsite.Framework.Interfaces.Services
         public HostTypeEnum? HostType { get; set; }
         public LanguageEnum CurrentLanguage { get; }
         public ConcurrentQueue<IDarimarSystemComponent> DarimarSystemComponents { get; set; }
-        public void InitializeLanguage();
         public Task InitializeLanguageAsync();
-        public void ChangeLanguage(LanguageEnum language);
+        public Task ChangeLanguageAsync(LanguageEnum language);
         public string? GetLocalizedString(string nameID);
         public string GetAppVersion();
-        public string? GetPreference(string name);
-        public void SetPreference(string name, string value);
         public Task<string?> GetPreferenceAsync(string name);
         public Task SetPreferenceAsync(string name, string value);
         public void UpdateAllDarimarSystemComponents();

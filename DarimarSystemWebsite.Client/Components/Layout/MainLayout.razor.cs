@@ -22,14 +22,18 @@ namespace DarimarSystemWebsite.Client.Components.Layout
                 PaletteDark = _darkPalette,
                 LayoutProperties = new LayoutProperties()
             };
-
-            _isDarkMode = bool.Parse(DarimarSystemService.GetPreference("darkMode") ?? "true");
         }
 
-        private void DarkModeToggle()
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            _isDarkMode = bool.Parse(await DarimarSystemService.GetPreferenceAsync("darkMode") ?? "true");
+        }
+
+        private async Task DarkModeToggle()
         {
             _isDarkMode = !_isDarkMode;
-            DarimarSystemService.SetPreference("darkMode", _isDarkMode.ToString());
+            await DarimarSystemService.SetPreferenceAsync("darkMode", _isDarkMode.ToString());
         }
 
         private readonly PaletteLight _lightPalette = new()
