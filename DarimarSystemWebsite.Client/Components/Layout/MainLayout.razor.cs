@@ -1,17 +1,10 @@
-﻿using DarimarSystemWebsite.Framework.Interfaces.Services;
-using Microsoft.AspNetCore.Components;
+﻿using DarimarSystemWebsite.Framework.Components;
 using MudBlazor;
 
 namespace DarimarSystemWebsite.Client.Components.Layout
 {
-    public partial class MainLayout : LayoutComponentBase
+    public partial class MainLayout : DarimarSystemLayout
     {
-        [Inject]
-        public required IDarimarSystemService DarimarSystemService { get; set; }
-
-        [Inject]
-        public required PersistentComponentState State { get; set; }
-
         private bool _isDarkMode = true;
 
         private MudTheme? _theme = null;
@@ -26,8 +19,6 @@ namespace DarimarSystemWebsite.Client.Components.Layout
                 PaletteDark = _darkPalette,
                 LayoutProperties = new LayoutProperties()
             };
-
-            DarimarSystemService.InitializePreferences(State);
         }
 
         protected override async Task OnInitializedAsync()
