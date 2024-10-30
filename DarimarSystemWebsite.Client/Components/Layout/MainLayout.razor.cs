@@ -9,7 +9,11 @@ namespace DarimarSystemWebsite.Client.Components.Layout
         [Inject]
         public required IDarimarSystemService DarimarSystemService { get; set; }
 
+        [Inject]
+        public required PersistentComponentState State { get; set; }
+
         private bool _isDarkMode = true;
+
         private MudTheme? _theme = null;
 
         protected override void OnInitialized()
@@ -22,18 +26,22 @@ namespace DarimarSystemWebsite.Client.Components.Layout
                 PaletteDark = _darkPalette,
                 LayoutProperties = new LayoutProperties()
             };
+
+            DarimarSystemService.InitializePreferences(State);
         }
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            _isDarkMode = bool.Parse(await DarimarSystemService.GetPreferenceAsync("darkMode") ?? "true");
+
+            _isDarkMode = bool.Parse(await DarimarSystemService.GetClientPreferenceAsync("darkMode") ?? "true");
         }
 
         private async Task DarkModeToggle()
         {
             _isDarkMode = !_isDarkMode;
-            await DarimarSystemService.SetPreferenceAsync("darkMode", _isDarkMode.ToString());
+
+            await DarimarSystemService.SetClientPreferenceAsync("darkMode", _isDarkMode.ToString());
         }
 
         private readonly PaletteLight _lightPalette = new()

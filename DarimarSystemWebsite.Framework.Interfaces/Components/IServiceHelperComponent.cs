@@ -4,8 +4,10 @@
     {
         public void RegisterAfterRenderAction(Action action);
         public void RegisterAfterRenderAsyncAction(Func<Task> asyncAction);
+        public void RegisterOnFinishAction(Action action);
         public void RegisterJSInvokeVoidAsyncAction(string jsFunctionName, params object?[]? jsArguments);
         public Task RunJSInvokeVoidAsyncAction(string jsFunctionName, params object?[]? jsArguments);
         public Task<ReturnType> RunJSInvokeAsyncAction<ReturnType>(string jsFunctionName, params object?[]? jsArguments);
+        public void RunOnFinishActions();
     }
 }

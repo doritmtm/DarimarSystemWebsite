@@ -19,6 +19,8 @@ namespace DarimarSystemWebsite.Framework.Services
 
         private IClientPreferencesService _clientPreferencesService;
 
+        private IPersistedPreferencesService _persistedPreferencesService;
+
         public IServiceHelperComponent? ServiceHelper
         {
             get => _serviceHelperComponentHostService.ServiceHelper;
@@ -37,14 +39,20 @@ namespace DarimarSystemWebsite.Framework.Services
 
         public ConcurrentQueue<IDarimarSystemComponent> DarimarSystemComponents { get; set; } = [];
 
-        public DarimarSystemService(IServiceHelperComponentHostService serviceHelperComponentHostService, IHostInformationService hostInformationService, ILanguageService languageService, IConfiguration configurationService, IClientPreferencesService clientPreferencesService)
+        public DarimarSystemService(IServiceHelperComponentHostService serviceHelperComponentHostService, IHostInformationService hostInformationService, ILanguageService languageService, IConfiguration configurationService, IClientPreferencesService clientPreferencesService, IPersistedPreferencesService persistedPreferencesService)
         {
             _serviceHelperComponentHostService = serviceHelperComponentHostService;
             _hostInformationService = hostInformationService;
             _languageService = languageService;
             _configurationService = configurationService;
             _clientPreferencesService = clientPreferencesService;
+            _persistedPreferencesService = persistedPreferencesService;
             _currentLanguage = _defaultLanguage;
+        }
+
+        public void InitializePreferences(object state)
+        {
+            _persistedPreferencesService.InitializePreferences(state);
         }
 
         public async Task InitializeLanguageAsync()
@@ -64,7 +72,7 @@ namespace DarimarSystemWebsite.Framework.Services
             }
             else
             {
-                throw new NotSupportedException("The given language as parameter is not considered as supported in SupportedLanguages");
+                throw new NotSupportedException("DarimarSystemService: The given language as parameter is not considered as supported in SupportedLanguages");
             }
         }
 
@@ -82,17 +90,22 @@ namespace DarimarSystemWebsite.Framework.Services
                 return version;
             }
 
-            throw new NotSupportedException("The version must be defined as Version inside the main app appsettings.json");
+            throw new NotSupportedException("DarimarSystemService: The version must be defined as Version inside the main app appsettings.json");
         }
 
-        public Task<string?> GetPreferenceAsync(string name)
+        public Task<string?> GetClientPreferenceAsync(string name)
         {
             return _clientPreferencesService.GetPreferenceAsync(name);
         }
 
-        public Task SetPreferenceAsync(string name, string value)
+        public Task SetClientPreferenceAsync(string name, string value)
         {
             return _clientPreferencesService.SetPreferenceAsync(name, value);
+        }
+
+        public void CommitPreferencesToPersistentSystem()
+        {
+            _persistedPreferencesService.CommitToPersistingSystem();
         }
 
         public void UpdateAllDarimarSystemComponents()

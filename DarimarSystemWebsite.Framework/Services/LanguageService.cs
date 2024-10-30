@@ -17,8 +17,6 @@ namespace DarimarSystemWebsite.Framework.Services
 
         private ResourceManager _resourceManager;
 
-        private Dictionary<LanguageEnum, Dictionary<string, string>> _translations = [];
-
         public LanguageService(IServiceHelperComponentHostService serviceHelperComponentHostService, IHostInformationService hostInformationService, IPersistedPreferencesService persistedPreferencesService)
         {
             _serviceHelperComponentHostService = serviceHelperComponentHostService;
@@ -31,7 +29,7 @@ namespace DarimarSystemWebsite.Framework.Services
             }
             else
             {
-                throw new NotSupportedException("StaticSettings.ResourcesClass must be defined");
+                throw new NotSupportedException("LanguageService: StaticSettings.ResourcesClass must be defined");
             }
 
             _persistedPreferencesService = persistedPreferencesService;
@@ -56,8 +54,6 @@ namespace DarimarSystemWebsite.Framework.Services
             {
                 foreach (LanguageEnum language in StaticSettings.SupportedLanguages)
                 {
-                    _translations[language] = [];
-
                     ResourceSet? resourceSet = _resourceManager.GetResourceSet(GetCultureInfoForLanguage(language), true, true);
                     if (resourceSet != null)
                     {
@@ -70,38 +66,10 @@ namespace DarimarSystemWebsite.Framework.Services
                                     string key = entry.Key.ToString() ?? "";
                                     string value = entry.Value.ToString() ?? "";
                                     _persistedPreferencesService.PersistPreference($"{StaticSettings.ResourcesClass.Name}-{language.ToString()}-{key}", value);
-                                    _translations[language][key] = value;
                                 }
                                 else
                                 {
-                                    throw new NotSupportedException("StaticSettings.ResourcesClass must be defined");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                foreach (LanguageEnum language in StaticSettings.SupportedLanguages)
-                {
-                    _translations[language] = [];
-
-                    ResourceSet? resourceSet = _resourceManager.GetResourceSet(GetCultureInfoForLanguage(LanguageEnum.English), true, true);
-                    if (resourceSet != null)
-                    {
-                        foreach (DictionaryEntry entry in resourceSet.Cast<DictionaryEntry>())
-                        {
-                            if (entry.Key != null)
-                            {
-                                if (StaticSettings.ResourcesClass != null)
-                                {
-                                    string key = entry.Key.ToString() ?? "";
-                                    _translations[language][key] = _persistedPreferencesService.GetPersistedPreference($"{StaticSettings.ResourcesClass.Name}-{language.ToString()}-{key}") ?? "";
-                                }
-                                else
-                                {
-                                    throw new NotSupportedException("StaticSettings.ResourcesClass must be defined");
+                                    throw new NotSupportedException("LanguageService: StaticSettings.ResourcesClass must be defined");
                                 }
                             }
                         }
@@ -124,11 +92,11 @@ namespace DarimarSystemWebsite.Framework.Services
         {
             if (StaticSettings.ResourcesClass != null)
             {
-                return _translations[language].ContainsKey(nameID) ? _translations[language][nameID] : null;
+                return _persistedPreferencesService.GetPersistedPreference($"{StaticSettings.ResourcesClass.Name}-{language.ToString()}-{nameID}");
             }
             else
             {
-                throw new NotSupportedException("StaticSettings.ResourcesClass must be defined");
+                throw new NotSupportedException("LanguageService: StaticSettings.ResourcesClass must be defined");
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
 <ServiceHelperComponent />
+
 <MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
 <MudPopoverProvider />
 <MudDialogProvider />
@@ -34,6 +35,7 @@
     <MudMainContent Style="height:100%">
         <MudContainer Class="px-8 py-4" MaxWidth="MaxWidth.Large">
             @Body
+            <ServiceHelperFinishComponent />
         </MudContainer>
     </MudMainContent>
     <MudScrollToTop>

@@ -14,8 +14,6 @@ namespace DarimarSystemWebsite.Framework.Services
 
         private ICookieService _cookieService;
 
-        private Dictionary<string, string?> _clientPreferences = [];
-
         public ClientPreferencesService(IServiceHelperComponentHostService serviceHelperComponentHostService, IHostInformationService hostInformationService, IPersistedPreferencesService persistedPreferencesService, ICookieService cookieService)
         {
             _serviceHelperComponentHostService = serviceHelperComponentHostService;
@@ -35,18 +33,7 @@ namespace DarimarSystemWebsite.Framework.Services
             }
             else
             {
-                if (_hostInformationService.HostType == HostTypeEnum.Server)
-                {
-                    string? value = _persistedPreferencesService.GetPersistedPreference(name);
-                    _clientPreferences[name] = value;
-                }
-                if (_hostInformationService.HostType == HostTypeEnum.WebAssembly)
-                {
-                    Cookie? cookie = await _cookieService.GetAsync(name);
-                    string? value = cookie?.Value;
-                    _clientPreferences[name] = value;
-                }
-                return _clientPreferences[name];
+                return _persistedPreferencesService.GetPersistedPreference(name);
             }
         }
 
@@ -56,7 +43,6 @@ namespace DarimarSystemWebsite.Framework.Services
             {
                 await _cookieService.SetAsync(name, value, DateTimeOffset.Now.AddDays(400));
             });
-            _clientPreferences[name] = value;
             return Task.CompletedTask;
         }
     }

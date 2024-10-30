@@ -8,11 +8,13 @@ namespace DarimarSystemWebsite.Framework.Components
     {
         private ConcurrentQueue<Action> _afterRenderActions = [];
         private ConcurrentQueue<Func<Task>> _afterRenderAsyncActions = [];
+        private ConcurrentQueue<Action> _onFinishActions = [];
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
             DarimarSystemService.ServiceHelper = this;
+            RegisterOnFinishAction(DarimarSystemService.CommitPreferencesToPersistentSystem);
         }
 
         protected override async Task OnInitializedAsync()
@@ -57,6 +59,11 @@ namespace DarimarSystemWebsite.Framework.Components
             StateHasChanged();
         }
 
+        public void RegisterOnFinishAction(Action action)
+        {
+            _onFinishActions.Enqueue(action);
+        }
+
         public void RegisterJSInvokeVoidAsyncAction(string jsFunctionName, params object?[]? jsArguments)
         {
             RegisterAfterRenderAsyncAction(async () => await JSRuntime.InvokeVoidAsync(jsFunctionName, jsArguments));
@@ -71,6 +78,16 @@ namespace DarimarSystemWebsite.Framework.Components
         public async Task<ReturnType> RunJSInvokeAsyncAction<ReturnType>(string jsFunctionName, params object?[]? jsArguments)
         {
             return await JSRuntime.InvokeAsync<ReturnType>(jsFunctionName, jsArguments);
+        }
+
+        public void RunOnFinishActions()
+        {
+            foreach (var action in _onFinishActions)
+            {
+                action();
+            }
+
+            _onFinishActions.Clear();
         }
     }
 }
