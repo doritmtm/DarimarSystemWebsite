@@ -42,6 +42,11 @@ namespace DarimarSystemWebsite.Framework.Components
             InvokeAsync(StateHasChanged);
         }
 
+        public void RefreshAll()
+        {
+            NavigationManager.Refresh(true);
+        }
+
         public string GetCurrentHref()
         {
             string currentHref = new Uri(NavigationManager.Uri).AbsolutePath;

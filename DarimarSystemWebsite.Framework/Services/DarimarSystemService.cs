@@ -37,6 +37,12 @@ namespace DarimarSystemWebsite.Framework.Services
         private LanguageEnum _currentLanguage;
         public LanguageEnum CurrentLanguage => _currentLanguage;
 
+        public bool? CookieUserConsent
+        {
+            get => _clientPreferencesService.CookieUserConsent;
+            set => _clientPreferencesService.CookieUserConsent = value;
+        }
+
         public ConcurrentQueue<IDarimarSystemComponent> DarimarSystemComponents { get; set; } = [];
 
         public DarimarSystemService(IServiceHelperComponentHostService serviceHelperComponentHostService, IHostInformationService hostInformationService, ILanguageService languageService, IConfiguration configurationService, IClientPreferencesService clientPreferencesService, IPersistedPreferencesService persistedPreferencesService)
@@ -50,9 +56,14 @@ namespace DarimarSystemWebsite.Framework.Services
             _currentLanguage = _defaultLanguage;
         }
 
-        public void InitializePreferences(object state)
+        public void InitializePersistedPreferences(object state)
         {
             _persistedPreferencesService.InitializePreferences(state);
+        }
+
+        public async Task InitializeClientPreferences()
+        {
+            await _clientPreferencesService.Initialize();
         }
 
         public async Task InitializeLanguageAsync()
@@ -101,6 +112,11 @@ namespace DarimarSystemWebsite.Framework.Services
         public Task SetClientPreferenceAsync(string name, string value)
         {
             return _clientPreferencesService.SetPreferenceAsync(name, value);
+        }
+
+        public void ResetClientPreferences()
+        {
+            _clientPreferencesService.ResetAllPreferences();
         }
 
         public void CommitPreferencesToPersistentSystem()

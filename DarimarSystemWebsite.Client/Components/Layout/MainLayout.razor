@@ -30,15 +30,26 @@
         <InteractiveComponent>
             <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
         </InteractiveComponent>
-        <div style="user-select:none">&nbsp;&nbsp;</div>
+        @RawHTML.SeparateByNbspChars(2)
     </MudAppBar>
     <MudMainContent Style="height:100%">
-        <MudContainer Class="px-8 py-4" MaxWidth="MaxWidth.Large">
+        <MudContainer Class="px-8 py-4" MaxWidth="MaxWidth.Large" Style="min-height:88vh;">
             @Body
             <ServiceHelperFinishComponent />
         </MudContainer>
     </MudMainContent>
-    <MudScrollToTop>
+    <MudDivider />
+    <MudAppBar Bottom="true" Fixed="false" Elevation="0" Class="px-2" Style="overflow-x:auto;overflow-y:hidden">
+        <InteractiveComponent>
+            <ResetCookiesButton />
+        </InteractiveComponent>
+        <MudSpacer />
+        <div style="min-width:40px" />
+        <MudText Style="text-wrap:nowrap">© Copyright Darimar System SRL @DateTime.Now.ToString("yyyy")</MudText>
+        @RawHTML.SeparateByNbspChars(20)
+    </MudAppBar>
+    <CookieDialog @ref="CookieDialog"/>
+    <MudScrollToTop Style="z-index:2000">
         <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.KeyboardArrowUp" />
     </MudScrollToTop>
 </MudLayout>

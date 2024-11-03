@@ -15,7 +15,14 @@ namespace DarimarSystemWebsite.Framework.Components
         {
             base.OnInitialized();
 
-            DarimarSystemService.InitializePreferences(State);
+            DarimarSystemService.InitializePersistedPreferences(State);
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+
+            await DarimarSystemService.InitializeClientPreferences();
         }
     }
 }

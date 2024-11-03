@@ -9,6 +9,8 @@ namespace DarimarSystemWebsite.Client.Components.Layout
 
         private MudTheme? _theme = null;
 
+        public CookieDialog? CookieDialog { get; set; }
+
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -26,6 +28,19 @@ namespace DarimarSystemWebsite.Client.Components.Layout
             await base.OnInitializedAsync();
 
             _isDarkMode = bool.Parse(await DarimarSystemService.GetClientPreferenceAsync("darkMode") ?? "true");
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+
+            if (CookieDialog != null)
+            {
+                if (DarimarSystemService.CookieUserConsent == null)
+                {
+                    await CookieDialog.OpenDialog();
+                }
+            }
         }
 
         private async Task DarkModeToggle()

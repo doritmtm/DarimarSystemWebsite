@@ -36,5 +36,20 @@ namespace DarimarSystemWebsite.Framework.RawHTML
         {
             return (MarkupString)$"<link rel=\"icon\" type=\"image/{iconType}\" href=\"{iconLink}?vers={StaticSettings.Version}\" />";
         }
+
+        public static MarkupString SeparateByNbspChars(int nrOfChars)
+        {
+            string nbspCharsDiv = @"<div style=""user-select:none"">";
+
+            for (int i = 0; i < nrOfChars; i++)
+            {
+                nbspCharsDiv += "&nbsp;";
+            }
+
+            nbspCharsDiv += @"</div>";
+
+            return (MarkupString)nbspCharsDiv;
+        }
+
     }
 }

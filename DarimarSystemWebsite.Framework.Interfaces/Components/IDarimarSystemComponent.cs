@@ -5,5 +5,6 @@
         public bool ReadyToRender();
         public void Update();
         public string GetCurrentHref();
+        public void RefreshAll();
     }
 }

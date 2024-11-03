@@ -1,6 +1,7 @@
 ﻿using DarimarSystemWebsite.Framework.Interfaces.Services;
 using DarimarSystemWebsite.Framework.Settings;
 using Microsoft.AspNetCore.Components;
+using System.Text.Json;
 
 namespace DarimarSystemWebsite.Framework.Services
 {
@@ -12,7 +13,11 @@ namespace DarimarSystemWebsite.Framework.Services
 
         private Dictionary<string, string?> _persistedPreferences = [];
 
-        private List<string> _persistedKeys = [];
+        private Dictionary<string, object> _persistedObjects = [];
+
+        private List<string> _persistedPreferencesKeys = [];
+
+        private List<string> _persistedObjectsKeys = [];
 
         public PersistedPreferencesService(IHostPreRenderingService hostPreRenderingService)
         {
@@ -27,24 +32,56 @@ namespace DarimarSystemWebsite.Framework.Services
 
                 if (!_hostPreRenderingService.IsPreRendering)
                 {
-                    if (_persistentComponentState.TryTakeFromJson("persistedKeys", out List<string>? persistedKeys))
+                    if (_persistentComponentState.TryTakeFromJson("persistedPreferencesKeys", out List<string>? persistedPreferencesKeys))
                     {
-                        if (persistedKeys != null)
+                        if (persistedPreferencesKeys != null)
                         {
-                            _persistedKeys = persistedKeys;
+                            _persistedPreferencesKeys = persistedPreferencesKeys;
 
-                            foreach (string persistedKey in persistedKeys)
+                            foreach (string persistedPreferenceKey in persistedPreferencesKeys)
                             {
-                                if (_persistentComponentState.TryTakeFromJson(persistedKey, out string? value))
+                                if (_persistentComponentState.TryTakeFromJson(persistedPreferenceKey, out string? value))
                                 {
                                     if (value != null)
                                     {
-                                        _persistedPreferences[persistedKey] = value;
+                                        _persistedPreferences[persistedPreferenceKey] = value;
                                     }
                                 }
                             }
                         }
                     }
+
+                    if (_persistentComponentState.TryTakeFromJson("persistedObjectsKeys", out List<string>? persistedObjectsKeys))
+                    {
+                        if (persistedObjectsKeys != null)
+                        {
+                            _persistedObjectsKeys = persistedObjectsKeys;
+
+                            foreach (string persistedObjectKey in persistedObjectsKeys)
+                            {
+                                if (_persistentComponentState.TryTakeFromJson(persistedObjectKey, out object? value))
+                                {
+                                    if (value != null)
+                                    {
+                                        _persistedObjects[persistedObjectKey] = value;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    _persistentComponentState.RegisterOnPersisting(() =>
+                    {
+                        _persistentComponentState.PersistAsJson("persistedPreferencesKeys", _persistedPreferencesKeys);
+                        return Task.CompletedTask;
+                    }, StaticSettings.GlobalRenderMode);
+                    _persistentComponentState.RegisterOnPersisting(() =>
+                    {
+                        _persistentComponentState.PersistAsJson("persistedObjectsKeys", _persistedObjectsKeys);
+                        return Task.CompletedTask;
+                    }, StaticSettings.GlobalRenderMode);
                 }
             }
         }
@@ -63,6 +100,30 @@ namespace DarimarSystemWebsite.Framework.Services
                 CommitToPersistingSystem();
             }
         }
+        public void RemovePersistedPreference(string name)
+        {
+            _persistedPreferences.Remove(name);
+        }
+
+        public PersistedType? GetPersistedObject<PersistedType>(string name)
+        {
+            return _persistedObjects.ContainsKey(name) ? JsonSerializer.Deserialize<PersistedType>((JsonElement)_persistedObjects[name]) : default;
+        }
+
+        public void PersistObject<PersistType>(string name, PersistType value)
+        {
+            _persistedObjects[name] = value!;
+
+            if (_persistentComponentState != null)
+            {
+                CommitToPersistingSystem();
+            }
+        }
+
+        public void RemovePersistedObject(string name)
+        {
+            _persistedObjects.Remove(name);
+        }
 
         public void CommitToPersistingSystem()
         {
@@ -72,22 +133,29 @@ namespace DarimarSystemWebsite.Framework.Services
                 {
                     foreach (var preference in _persistedPreferences)
                     {
-                        if (!_persistedKeys.Contains(preference.Key))
+                        if (!_persistedPreferencesKeys.Contains(preference.Key))
                         {
                             _persistentComponentState.RegisterOnPersisting(() =>
                             {
                                 _persistentComponentState.PersistAsJson(preference.Key, preference.Value);
                                 return Task.CompletedTask;
                             }, StaticSettings.GlobalRenderMode);
-                            _persistedKeys.Add(preference.Key);
+                            _persistedPreferencesKeys.Add(preference.Key);
                         }
                     }
 
-                    _persistentComponentState.RegisterOnPersisting(() =>
+                    foreach (var obj in _persistedObjects)
                     {
-                        _persistentComponentState.PersistAsJson("persistedKeys", _persistedKeys);
-                        return Task.CompletedTask;
-                    }, StaticSettings.GlobalRenderMode);
+                        if (!_persistedObjectsKeys.Contains(obj.Key))
+                        {
+                            _persistentComponentState.RegisterOnPersisting(() =>
+                            {
+                                _persistentComponentState.PersistAsJson(obj.Key, obj.Value);
+                                return Task.CompletedTask;
+                            }, StaticSettings.GlobalRenderMode);
+                            _persistedObjectsKeys.Add(obj.Key);
+                        }
+                    }
                 }
                 else
                 {
