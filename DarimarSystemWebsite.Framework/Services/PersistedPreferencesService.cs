@@ -112,7 +112,7 @@ namespace DarimarSystemWebsite.Framework.Services
 
         public void PersistObject<PersistType>(string name, PersistType value)
         {
-            _persistedObjects[name] = value!;
+            _persistedObjects[name] = JsonSerializer.SerializeToElement(value);
 
             if (_persistentComponentState != null)
             {
