@@ -13,10 +13,11 @@
             };
         }
 
-        public void AllowCookies()
+        public async Task AllowCookies()
         {
             DarimarSystemService.CookieUserConsent = true;
-            CloseDialog();
+            await DarimarSystemService.ChangeLanguageAsync(DarimarSystemService.CurrentLanguage);
+            await CloseDialog();
         }
 
         public void DenyCookies()
