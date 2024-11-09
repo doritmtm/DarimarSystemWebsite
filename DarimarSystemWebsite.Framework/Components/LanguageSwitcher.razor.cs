@@ -3,7 +3,7 @@ using DarimarSystemWebsite.Framework.Settings;
 
 namespace DarimarSystemWebsite.Framework.Components
 {
-    public partial class LanguageSwitcher : DarimarSystemComponent
+    public partial class LanguageSwitcher : DarimarSystemComponentWithStyle
     {
         public LanguageEnum? GetTheOtherLanguage()
         {

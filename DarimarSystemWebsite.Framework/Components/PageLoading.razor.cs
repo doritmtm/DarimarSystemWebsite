@@ -1,6 +1,6 @@
 ﻿namespace DarimarSystemWebsite.Framework.Components
 {
-    public partial class PageLoading : DarimarSystemComponent
+    public partial class PageLoading : DarimarSystemComponentWithStyle
     {
         protected override void OnInitialized()
         {

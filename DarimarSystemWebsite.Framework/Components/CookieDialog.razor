@@ -1,5 +1,5 @@
 ﻿@inherits DarimarSystemDialog
-<MudDialog>
+<MudDialog OnBackdropClick="CloseDialog">
     <TitleContent>
         <MudText Typo="Typo.h6">@DarimarSystemService.GetLocalizedString("FrameworkCookieUsageTitle")</MudText>
     </TitleContent>
@@ -10,6 +10,8 @@
         <div style="min-height:20px" />
     </DialogContent>
     <DialogActions>
+        <LanguageSwitcher Class="ml-3 mb-1" />
+        <MudSpacer />
         <MudButton OnClick="DenyCookies" Color="Color.Primary" Variant="Variant.Outlined" Class="mr-3 mb-1">@DarimarSystemService.GetLocalizedString("FrameworkDeny")</MudButton>
         <MudButton OnClick="AllowCookies" Color="Color.Primary" Variant="Variant.Filled" Class="mr-3 mb-1">@DarimarSystemService.GetLocalizedString("FrameworkAllow")</MudButton>
     </DialogActions>

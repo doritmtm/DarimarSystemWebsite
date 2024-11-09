@@ -11,6 +11,8 @@ namespace DarimarSystemWebsite.Client.Components.Layout
 
         public CookieDialog? CookieDialog { get; set; }
 
+        private bool _isCookieDialogOpened = false;
+
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -34,12 +36,15 @@ namespace DarimarSystemWebsite.Client.Components.Layout
         {
             await base.OnAfterRenderAsync(firstRender);
 
-            if (CookieDialog != null)
+            if (CookieDialog != null && !_isCookieDialogOpened)
             {
                 if (DarimarSystemService.CookieUserConsent == null)
                 {
+                    CookieDialog.OnCloseAction = () => { _isCookieDialogOpened = false; };
                     await CookieDialog.OpenDialog();
                 }
+
+                _isCookieDialogOpened = true;
             }
         }
 

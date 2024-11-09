@@ -2,11 +2,9 @@
 
 namespace DarimarSystemWebsite.Framework.Components
 {
-    public partial class NavButton : DarimarSystemComponent
+    public partial class NavButton : DarimarSystemComponentWithStyle
     {
         [Parameter]
         public string Href { get; set; } = "";
-        [Parameter]
-        public string Class { get; set; } = "";
     }
 }

@@ -13,21 +13,35 @@ namespace DarimarSystemWebsite.Framework.Components
         [CascadingParameter]
         public MudDialogInstance? DialogInstance { get; set; }
 
+        public DarimarSystemDialog? OpenedDialog { get; set; }
+
+        public Action? OnCloseAction { get; set; }
+
         public async Task OpenDialog()
         {
+            IDialogReference? dialogReference = null;
+
             if (DialogOptions != null)
             {
-                await DialogService.ShowAsync(GetType(), "", DialogOptions);
+                dialogReference = await DialogService.ShowAsync(GetType(), "", DialogOptions);
             }
             else
             {
-                await DialogService.ShowAsync(GetType());
+                dialogReference = await DialogService.ShowAsync(GetType());
+            }
+
+            OpenedDialog = dialogReference.Dialog as DarimarSystemDialog;
+
+            if (OpenedDialog != null)
+            {
+                OpenedDialog.OnCloseAction = OnCloseAction;
             }
         }
 
         public void CloseDialog()
         {
             DialogInstance?.Close();
+            OnCloseAction?.Invoke();
         }
     }
 }

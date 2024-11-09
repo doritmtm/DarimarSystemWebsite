@@ -2,11 +2,8 @@
 
 namespace DarimarSystemWebsite.Framework.Components
 {
-    public partial class ResetCookiesButton : DarimarSystemComponent
+    public partial class ResetCookiesButton : DarimarSystemComponentWithStyle
     {
-        [Parameter]
-        public string Class { get; set; } = "";
-
         public void ResetCookies()
         {
             DarimarSystemService.ResetClientPreferences();

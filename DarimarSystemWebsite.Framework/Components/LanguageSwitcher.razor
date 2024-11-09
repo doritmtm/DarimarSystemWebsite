@@ -1,3 +1,3 @@
-﻿@inherits DarimarSystemComponent
+﻿@inherits DarimarSystemComponentWithStyle
 
-<MudButton @onclick="SwitchLanguage" Style="text-transform:none">@GetTheOtherLanguage()</MudButton>
+<MudButton @onclick="SwitchLanguage" Class="@Class" Style="@("text-transform:none;" + Style)">@GetTheOtherLanguage()</MudButton>
