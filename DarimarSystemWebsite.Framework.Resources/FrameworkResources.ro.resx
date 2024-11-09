@@ -120,4 +120,22 @@
   <data name="FrameworkResetCookies" xml:space="preserve">
     <value>Resetați Cookie</value>
   </data>
+  <data name="FrameworkCookieUsageExplainer" xml:space="preserve">
+    <value>Utilizăm cookie pentru a îmbunătăți experiența prin salvarea preferințelor dvs.</value>
+  </data>
+  <data name="FrameworkCookieUsageRecommendation" xml:space="preserve">
+    <value>Este de recomandat să permiteți utilizarea cookie pentru cea mai bună experiență.</value>
+  </data>
+  <data name="FrameworkCookieUsageTitle" xml:space="preserve">
+    <value>Consimțământ Cookie</value>
+  </data>
+  <data name="FrameworkCookieUsageResetExplainer" xml:space="preserve">
+    <value>În cazul în care doriți să alegeți din nou, puteți utiliza butonul de resetare cookie prezent mai jos in pagină.</value>
+  </data>
+  <data name="FrameworkDeny" xml:space="preserve">
+    <value>Nu permiteți</value>
+  </data>
+  <data name="FrameworkAllow" xml:space="preserve">
+    <value>Permiteți</value>
+  </data>
 </root>

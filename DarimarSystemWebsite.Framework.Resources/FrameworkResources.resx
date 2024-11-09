@@ -120,4 +120,22 @@
   <data name="FrameworkResetCookies" xml:space="preserve">
     <value>Reset Cookies</value>
   </data>
+  <data name="FrameworkCookieUsageExplainer" xml:space="preserve">
+    <value>We use cookies to improve your experience by saving your preferences.</value>
+  </data>
+  <data name="FrameworkCookieUsageRecommendation" xml:space="preserve">
+    <value>It is recommended to allow the use of cookies for the best experience.</value>
+  </data>
+  <data name="FrameworkCookieUsageTitle" xml:space="preserve">
+    <value>Cookie Consent</value>
+  </data>
+  <data name="FrameworkCookieUsageResetExplainer" xml:space="preserve">
+    <value>If you would like to choose again at a later time, you can use the reset cookies button from the bottom of the page.</value>
+  </data>
+  <data name="FrameworkDeny" xml:space="preserve">
+    <value>Deny</value>
+  </data>
+  <data name="FrameworkAllow" xml:space="preserve">
+    <value>Allow</value>
+  </data>
 </root>
