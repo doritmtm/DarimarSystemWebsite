@@ -10,7 +10,7 @@ namespace DarimarSystemWebsite.Framework.Components
         public void ResetCookies()
         {
             DarimarSystemService.ResetClientPreferences();
-            RefreshAll();
+            DarimarSystemService.ServiceHelper?.RegisterAfterRenderAsyncAction(() => { RefreshAll(); return Task.CompletedTask; });
         }
     }
 }
