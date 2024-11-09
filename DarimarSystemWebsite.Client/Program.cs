@@ -14,7 +14,7 @@ using Microsoft.Extensions.Localization;
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 StaticSettings.AppAssembly = typeof(Program).Assembly;
-StaticSettings.AdditionalAssemblies = [typeof(DarimarSystemWebsite.Client._Imports).Assembly, typeof(DarimarSystemWebsite.Framework._Imports).Assembly];
+StaticSettings.AdditionalAssemblies = [typeof(DarimarSystemWebsite.Client._Imports).Assembly, typeof(DarimarSystemWebsite.Framework._Imports).Assembly, typeof(DarimarSystemWebsite.Framework.Resources.FrameworkResources).Assembly];
 StaticSettings.ResourcesClass = typeof(SiteResources);
 StaticSettings.SupportedLanguages.Add(LanguageEnum.English);
 StaticSettings.SupportedLanguages.Add(LanguageEnum.Romana);

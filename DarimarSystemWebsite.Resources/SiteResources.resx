@@ -117,7 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="HelloWorld" xml:space="preserve">
-    <value>Hello World!</value>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome to Darimar System website!</value>
+  </data>
+  <data name="LogisticsCompany" xml:space="preserve">
+    <value>Logistics company</value>
+  </data>
+  <data name="LogisticsCompanyDescription" xml:space="preserve">
+    <value>Seamless cargo transportation</value>
+  </data>
+  <data name="WebDevelopmentCompany" xml:space="preserve">
+    <value>Web development company</value>
+  </data>
+  <data name="WebDevelopmentCompanyDescription" xml:space="preserve">
+    <value>Robust, feature-rich software solutions</value>
+  </data>
+  <data name="GameDevelopmentCompany" xml:space="preserve">
+    <value>Game development company</value>
+  </data>
+  <data name="GameDevelopmentCompanyDescription" xml:space="preserve">
+    <value>Easy and fun games to play</value>
   </data>
 </root>

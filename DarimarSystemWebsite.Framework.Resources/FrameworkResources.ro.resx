@@ -117,28 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>Acasă</value>
-  </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Bine ați venit pe pagina de internet Darimar System!</value>
-  </data>
-  <data name="LogisticsCompany" xml:space="preserve">
-    <value>Companie de transport</value>
-  </data>
-  <data name="LogisticsCompanyDescription" xml:space="preserve">
-    <value>Transport de marfă de încredere</value>
-  </data>
-  <data name="WebDevelopmentCompany" xml:space="preserve">
-    <value>Companie dezvoltatoare de aplicații web</value>
-  </data>
-  <data name="WebDevelopmentCompanyDescription" xml:space="preserve">
-    <value>Soluții software complete și robuste</value>
-  </data>
-  <data name="GameDevelopmentCompany" xml:space="preserve">
-    <value>Companie dezvoltatoare de jocuri video</value>
-  </data>
-  <data name="GameDevelopmentCompanyDescription" xml:space="preserve">
-    <value>Jocuri video simple și distractive</value>
+  <data name="FrameworkResetCookies" xml:space="preserve">
+    <value>Resetați Cookie</value>
   </data>
 </root>

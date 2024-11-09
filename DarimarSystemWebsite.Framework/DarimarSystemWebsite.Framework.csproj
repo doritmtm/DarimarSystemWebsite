@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DarimarSystemWebsite.Framework.Interfaces\DarimarSystemWebsite.Framework.Interfaces.csproj" />
+    <ProjectReference Include="..\DarimarSystemWebsite.Framework.Resources\DarimarSystemWebsite.Framework.Resources.csproj" />
   </ItemGroup>
 
   <ItemGroup>

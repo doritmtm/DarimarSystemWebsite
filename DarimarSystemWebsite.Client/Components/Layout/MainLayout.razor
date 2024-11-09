@@ -1,5 +1,7 @@
 ﻿@inherits DarimarSystemLayout
 
+@{ #pragma warning disable CSS102 }
+
 <ServiceHelperComponent />
 
 <MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
@@ -14,7 +16,7 @@
         }
         <MudImage Src="@darimarSystemLogoSvg" Width="120" Height="60"></MudImage>
         <InteractiveComponent>
-            <NavButton Href="/" Class="ml-3">Home</NavButton>
+            <NavButton Href="/" Class="ml-3">@DarimarSystemService.GetLocalizedString("Home")</NavButton>
         </InteractiveComponent>
         <InteractiveComponent>
             <NavButton Href="/counter" Class="ml-3">Counter</NavButton>
@@ -32,11 +34,8 @@
         </InteractiveComponent>
         @RawHTML.SeparateByNbspChars(2)
     </MudAppBar>
-    <MudMainContent Style="height:100%">
-        <MudContainer Class="px-8 py-4" MaxWidth="MaxWidth.Large" Style="min-height:88vh;">
-            @Body
-            <ServiceHelperFinishComponent />
-        </MudContainer>
+    <MudMainContent Style="height:100%;opacity:0.95;background-color:var(--mud-palette-appbar-background)">
+        @Body
     </MudMainContent>
     <MudDivider />
     <MudAppBar Bottom="true" Fixed="false" Elevation="0" Class="px-2" Style="overflow-x:auto;overflow-y:hidden">

@@ -1,28 +1,20 @@
 ﻿@inherits DarimarSystemComponent
 
-@if (@PageDefinitions?.PreRenderingContent != null)
+@{ #pragma warning disable CSS024 }
+
+@if (PageDefinitions?.PreRenderingContent != null && IsPreRendering)
 {
-    @if (IsPreRendering)
-    {
-        @PageDefinitions?.PreRenderingContent.ChildContent
-    }
-    else if (ReadyToRender())
-    {
+    @PageDefinitions?.PreRenderingContent.ChildContent
+}
+else if (ReadyToRender())
+{
+    <MudContainer Class="@("px-8 py-4 " + PageDefinitions?.PageContent?.Class)" MaxWidth="@(PageDefinitions?.PageContent?.MaxWidth ?? MaxWidth.Large)" Style="@("min-height:88vh;" + PageDefinitions?.PageContent?.Style)">
         @PageDefinitions?.PageContent?.ChildContent
-    }
-    else
-    {
-        <PageLoading />
-    }
+    </MudContainer>
 }
 else
 {
-    if (ReadyToRender())
-    {
-        @PageDefinitions?.PageContent?.ChildContent
-    }
-    else
-    {
-        <PageLoading />
-    }
+    <PageLoading />
 }
+
+<ServiceHelperFinishComponent />

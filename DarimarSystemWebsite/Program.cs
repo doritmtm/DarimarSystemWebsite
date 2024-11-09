@@ -14,7 +14,7 @@ using Microsoft.Extensions.Localization;
 var builder = WebApplication.CreateBuilder(args);
 
 StaticSettings.AppAssembly = typeof(Program).Assembly;
-StaticSettings.AdditionalAssemblies = [typeof(DarimarSystemWebsite.Client._Imports).Assembly, typeof(DarimarSystemWebsite.Framework._Imports).Assembly];
+StaticSettings.AdditionalAssemblies = [typeof(DarimarSystemWebsite.Client._Imports).Assembly, typeof(DarimarSystemWebsite.Framework._Imports).Assembly, typeof(DarimarSystemWebsite.Framework.Resources.FrameworkResources).Assembly];
 StaticSettings.ResourcesClass = typeof(SiteResources);
 StaticSettings.SupportedLanguages.Add(LanguageEnum.English);
 StaticSettings.SupportedLanguages.Add(LanguageEnum.Romana);
@@ -55,6 +55,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(DarimarSystemWebsite.Client._Imports).Assembly)
-    .AddAdditionalAssemblies(typeof(DarimarSystemWebsite.Framework._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(DarimarSystemWebsite.Framework._Imports).Assembly)
+    .AddAdditionalAssemblies(typeof(DarimarSystemWebsite.Framework.Resources.FrameworkResources).Assembly);
 
 app.Run();
