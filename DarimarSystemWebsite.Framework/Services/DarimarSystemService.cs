@@ -43,6 +43,8 @@ namespace DarimarSystemWebsite.Framework.Services
             set => _clientPreferencesService.CookieUserConsent = value;
         }
 
+        public IDarimarSystemLayout? DarimarSystemLayout { get; set; }
+
         public ConcurrentQueue<IDarimarSystemComponent> DarimarSystemComponents { get; set; } = [];
 
         public DarimarSystemService(IServiceHelperComponentHostService serviceHelperComponentHostService, IHostInformationService hostInformationService, ILanguageService languageService, IConfiguration configurationService, IClientPreferencesService clientPreferencesService, IPersistedPreferencesService persistedPreferencesService)
@@ -126,6 +128,8 @@ namespace DarimarSystemWebsite.Framework.Services
 
         public void UpdateAllDarimarSystemComponents()
         {
+            DarimarSystemLayout?.Update();
+
             foreach (var component in DarimarSystemComponents)
             {
                 component.Update();

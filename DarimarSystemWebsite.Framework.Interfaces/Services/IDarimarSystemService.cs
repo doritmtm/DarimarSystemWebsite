@@ -10,6 +10,7 @@ namespace DarimarSystemWebsite.Framework.Interfaces.Services
         public HostTypeEnum? HostType { get; set; }
         public LanguageEnum CurrentLanguage { get; }
         public bool? CookieUserConsent { get; set; }
+        public IDarimarSystemLayout? DarimarSystemLayout { get; set; }
         public ConcurrentQueue<IDarimarSystemComponent> DarimarSystemComponents { get; set; }
         public void InitializePersistedPreferences(object state);
         public Task InitializeClientPreferences();

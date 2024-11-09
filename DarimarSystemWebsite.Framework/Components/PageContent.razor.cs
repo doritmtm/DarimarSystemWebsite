@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using MudBlazor;
 
 namespace DarimarSystemWebsite.Framework.Components
 {
@@ -6,6 +7,15 @@ namespace DarimarSystemWebsite.Framework.Components
     {
         [CascadingParameter]
         public PageDefinitions? PageDefinitions { get; set; }
+
+        [Parameter]
+        public string? Class { get; set; }
+
+        [Parameter]
+        public MaxWidth? MaxWidth { get; set; }
+
+        [Parameter]
+        public string? Style { get; set; }
 
         protected override void OnInitialized()
         {

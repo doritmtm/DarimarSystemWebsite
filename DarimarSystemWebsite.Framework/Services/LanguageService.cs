@@ -1,5 +1,6 @@
 ﻿using DarimarSystemWebsite.Framework.Interfaces.Enums;
 using DarimarSystemWebsite.Framework.Interfaces.Services;
+using DarimarSystemWebsite.Framework.Resources;
 using DarimarSystemWebsite.Framework.Settings;
 using System.Collections;
 using System.Globalization;
@@ -15,7 +16,7 @@ namespace DarimarSystemWebsite.Framework.Services
 
         private IPersistedPreferencesService _persistedPreferencesService;
 
-        private ResourceManager _resourceManager;
+        private ResourceManager _resourceManager, _frameworkResourceManager;
 
         public LanguageService(IServiceHelperComponentHostService serviceHelperComponentHostService, IHostInformationService hostInformationService, IPersistedPreferencesService persistedPreferencesService)
         {
@@ -26,6 +27,7 @@ namespace DarimarSystemWebsite.Framework.Services
             if (StaticSettings.ResourcesClass != null)
             {
                 _resourceManager = new ResourceManager(StaticSettings.ResourcesClass);
+                _frameworkResourceManager = new ResourceManager(typeof(FrameworkResources));
             }
             else
             {
@@ -74,6 +76,20 @@ namespace DarimarSystemWebsite.Framework.Services
                             }
                         }
                     }
+
+                    ResourceSet? frameworkResourceSet = _frameworkResourceManager.GetResourceSet(GetCultureInfoForLanguage(language), true, true);
+                    if (frameworkResourceSet != null)
+                    {
+                        foreach (DictionaryEntry entry in frameworkResourceSet.Cast<DictionaryEntry>())
+                        {
+                            if (entry.Key != null && entry.Value != null)
+                            {
+                                string key = entry.Key.ToString() ?? "";
+                                string value = entry.Value.ToString() ?? "";
+                                _persistedPreferencesService.PersistPreference($"{typeof(FrameworkResources).Name}-{language.ToString()}-{key}", value);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -92,7 +108,9 @@ namespace DarimarSystemWebsite.Framework.Services
         {
             if (StaticSettings.ResourcesClass != null)
             {
-                return _persistedPreferencesService.GetPersistedPreference($"{StaticSettings.ResourcesClass.Name}-{language.ToString()}-{nameID}");
+                string? localizedString = _persistedPreferencesService.GetPersistedPreference($"{typeof(FrameworkResources).Name}-{language.ToString()}-{nameID}");
+                localizedString ??= _persistedPreferencesService.GetPersistedPreference($"{StaticSettings.ResourcesClass.Name}-{language.ToString()}-{nameID}");
+                return localizedString;
             }
             else
             {
