@@ -40,11 +40,10 @@ namespace DarimarSystemWebsite.Client.Components.Layout
             {
                 if (DarimarSystemService.CookieUserConsent == null)
                 {
+                    CookieDialog.OnOpenAction = () => { _isCookieDialogOpened = true; };
                     CookieDialog.OnCloseAction = () => { _isCookieDialogOpened = false; };
                     await CookieDialog.OpenDialog();
                 }
-
-                _isCookieDialogOpened = true;
             }
         }
 

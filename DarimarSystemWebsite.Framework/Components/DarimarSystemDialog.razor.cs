@@ -15,6 +15,7 @@ namespace DarimarSystemWebsite.Framework.Components
 
         public DarimarSystemDialog? OpenedDialog { get; set; }
 
+        public Action? OnOpenAction { get; set; }
         public Action? OnCloseAction { get; set; }
 
         public async Task OpenDialog()
@@ -34,14 +35,25 @@ namespace DarimarSystemWebsite.Framework.Components
 
             if (OpenedDialog != null)
             {
+                OpenedDialog.OnOpenAction = OnOpenAction;
                 OpenedDialog.OnCloseAction = OnCloseAction;
             }
+
+            OnOpenAction?.Invoke();
         }
 
-        public void CloseDialog()
+        public Task CloseDialog()
         {
             DialogInstance?.Close();
             OnCloseAction?.Invoke();
+
+            return Task.CompletedTask;
+        }
+
+        public async Task CloseDialogAndReopen()
+        {
+            await CloseDialog();
+            await OpenDialog();
         }
     }
 }
