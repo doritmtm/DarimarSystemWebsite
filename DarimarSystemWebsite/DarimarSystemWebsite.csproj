@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DarimarSystemWebsite.Client\DarimarSystemWebsite.Client.csproj" />
-    <PackageReference Include="BitzArt.Blazor.Cookies.Server" Version="1.1.0" />
+    <PackageReference Include="BitzArt.Blazor.Cookies.Server" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.10" />
   </ItemGroup>
 
